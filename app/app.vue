@@ -231,10 +231,10 @@ const nav = computed(() =>
       >
         <div class="flex flex-col items-center text-center">
           <UAvatar
-            src="https://avatars.githubusercontent.com/u/99848589"
+            src="/resources/images/profile.webp"
             alt="Samuel Oberger Rockenbach"
             size="3xl"
-            class="rounded-xl ring-1 ring-primary/40 ring-offset-4 ring-offset-transparent"
+            class="size-32 rounded-2xl ring-1 ring-primary/40 ring-offset-4 ring-offset-transparent"
           />
           <h1 class="mt-4 text-lg leading-tight font-semibold">
             Samuel Oberger<br />Rockenbach
@@ -323,10 +323,10 @@ const nav = computed(() =>
         <section class="glass p-8 sm:p-10">
           <div class="mb-6 flex items-center gap-3 lg:hidden">
             <UAvatar
-              src="https://avatars.githubusercontent.com/u/99848589"
+              src="/resources/images/profile.webp"
               alt="Samuel Oberger Rockenbach"
               size="xl"
-              class="rounded-xl ring-1 ring-primary/40 ring-offset-2 ring-offset-transparent"
+              class="size-16 rounded-xl ring-1 ring-primary/40 ring-offset-2 ring-offset-transparent"
             />
             <div>
               <p class="leading-tight font-semibold text-highlighted">
