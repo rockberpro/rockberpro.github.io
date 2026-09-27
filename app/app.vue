@@ -151,7 +151,12 @@ const shownSections = computed(() =>
   }),
 );
 
-const defaultOpen = ["projects", "contact"];
+const defaultOpen = ["projects"];
+// contact renders as its own card after the accordion, but stays in nav and scroll-spy
+const accordionSections = computed(() =>
+  shownSections.value.filter((s) => s.value !== "contact"),
+);
+
 const open = ref<string[]>([...defaultOpen]);
 watch(
   q,
@@ -173,11 +178,20 @@ const menuOpen = ref(false);
 function goTo(value: string) {
   menuOpen.value = false;
   if (!open.value.includes(value)) open.value.push(value);
-  nextTick(() =>
-    document
-      .getElementById(value)
-      ?.scrollIntoView({ behavior: "smooth", block: "start" }),
-  );
+  nextTick(() => {
+    const el = document.getElementById(value);
+    el?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // one soft teal pulse on the landed card; the delay lets the scroll finish
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    el?.closest(".glass")?.animate(
+      [
+        { outline: "2px solid rgb(45 212 191 / 0)", outlineOffset: "2px" },
+        { outline: "2px solid rgb(45 212 191 / 0.7)", outlineOffset: "2px" },
+        { outline: "2px solid rgb(45 212 191 / 0)", outlineOffset: "2px" },
+      ],
+      { duration: 1200, delay: 350, easing: "ease-in-out" },
+    );
+  });
 }
 
 const active = ref("projects");
@@ -359,7 +373,7 @@ const nav = computed(() =>
           v-model="open"
           type="multiple"
           :unmount-on-hide="false"
-          :items="shownSections"
+          :items="accordionSections"
           :ui="{
             root: 'space-y-4',
             item: 'glass border-0 px-6',
@@ -442,31 +456,6 @@ const nav = computed(() =>
             </div>
           </template>
 
-          <template #contact>
-            <div class="flex flex-wrap gap-2 pb-6">
-              <UButton
-                :to="links.email"
-                icon="i-lucide-mail"
-                label="rockberpro@gmail.com"
-              />
-              <UButton
-                :to="links.linkedin"
-                target="_blank"
-                icon="i-simple-icons-linkedin"
-                label="LinkedIn"
-                color="neutral"
-                variant="subtle"
-              />
-              <UButton
-                :to="links.github"
-                target="_blank"
-                icon="i-simple-icons-github"
-                label="GitHub"
-                color="neutral"
-                variant="subtle"
-              />
-            </div>
-          </template>
         </UAccordion>
 
         <p
@@ -475,6 +464,34 @@ const nav = computed(() =>
         >
           Nothing matches “{{ query }}”.
         </p>
+
+        <section id="contact" class="glass scroll-mt-28 p-6">
+          <h2 class="text-lg font-medium text-highlighted">Contact</h2>
+          <p class="mt-1 text-muted">Want to work together or just say hi?</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            <UButton
+              :to="links.email"
+              icon="i-lucide-mail"
+              label="rockberpro@gmail.com"
+            />
+            <UButton
+              :to="links.linkedin"
+              target="_blank"
+              icon="i-simple-icons-linkedin"
+              label="LinkedIn"
+              color="neutral"
+              variant="subtle"
+            />
+            <UButton
+              :to="links.github"
+              target="_blank"
+              icon="i-simple-icons-github"
+              label="GitHub"
+              color="neutral"
+              variant="subtle"
+            />
+          </div>
+        </section>
       </div>
     </div>
 
