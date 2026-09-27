@@ -5,10 +5,4 @@ export default defineNuxtConfig({
   modules: ["@nuxt/ui"],
   css: ["~/assets/css/main.css"],
   colorMode: { preference: "dark" },
-  app: {
-    head: {
-      title: "Samuel Oberger Rockenbach · Software Engineer",
-      htmlAttrs: { lang: "en" },
-    },
-  },
 });

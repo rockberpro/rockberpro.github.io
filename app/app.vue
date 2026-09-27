@@ -1,36 +1,76 @@
 <script setup lang="ts">
+import en from "~/locales/en";
+import pt from "~/locales/pt";
+import la from "~/locales/la";
+
 const links = {
   github: "https://github.com/rockberpro",
   linkedin: "https://www.linkedin.com/in/samuel-oberger-rockenbach/",
   email: "mailto:rockberpro@gmail.com",
 };
 
-const about = [
-  "I've been into technology since I was a kid. Computers hooked me early, so I enrolled in a technician course and went on to spend three years working in computer maintenance. In 2021 I moved into web development and have been building for the web ever since. I'm finishing my B.Sc. in Software Engineering at Univates at the end of 2026.",
-  "I also love building developer tools, the small utilities that make everyday work smoother. Whatever I build, I aim for clean code and sound architecture: easy to read, solid as a rock, maintainable, and built to age well.",
-  "I was writing software for years before coding agents came along, and they haven't changed how I think about it. Today they're part of my daily workflow: I own the architecture and the decisions, give the agents the context they need, and review everything they write before it ships.",
-];
+// first visit: pick pt for Portuguese browsers; useState carries the server's pick to the client
+const accept = useRequestHeaders(["accept-language"])["accept-language"] ?? "";
+const detected = useState<"en" | "pt">("lang", () =>
+  accept.toLowerCase().startsWith("pt") ? "pt" : "en",
+);
+const lang = useCookie<"en" | "pt" | "la">("lang", {
+  default: () => detected.value,
+  maxAge: 60 * 60 * 24 * 365,
+  sameSite: "lax",
+});
+// Latin is opt-in only, never auto-detected
+const messages = { en, pt, la };
+const t = computed<typeof en>(() => messages[lang.value] ?? en);
+const languages = [
+  { code: "en", label: "English", icon: "i-circle-flags-us" },
+  { code: "pt", label: "Português", icon: "i-circle-flags-br" },
+  // the flags carry their own colors; the aquila is gilded like a legion standard
+  {
+    code: "la",
+    label: "Latina",
+    icon: "i-game-icons-eagle-emblem",
+    color: "text-[#f2c14e]",
+  },
+] as const;
+const langItems = computed(() =>
+  languages.map((l) => ({
+    label: l.label,
+    icon: l.icon,
+    type: "checkbox" as const,
+    checked: lang.value === l.code,
+    onSelect: () => (lang.value = l.code),
+    ui: { itemLeadingIcon: "color" in l ? l.color : "" },
+  })),
+);
+const langCurrent = computed(
+  () => languages.find((l) => l.code === lang.value) ?? languages[0],
+);
+useHead({
+  title: () => t.value.title,
+  htmlAttrs: { lang: () => (lang.value === "pt" ? "pt-BR" : lang.value) },
+});
 
 // Miku's teal and pink; the miHoYo logo inherits the text color like the black brands
 // stickers: die-cut images carry their own white outline, `framed` gets it from CSS
 const img = (name: string) => `/resources/images/${name}.sticker.webp`;
 const hobbies = [
   {
-    label: "Hatsune Miku",
+    key: "miku",
     icon: "i-lucide-headphones",
     color: "#39C5BB",
     img: img("miku-v6"),
     tilt: "-rotate-3",
   },
   {
-    label: "miHoYo games",
+    key: "mihoyo",
     icon: "i-simple-icons-mihoyo",
     img: img("hoyoverse"),
     tilt: "rotate-2",
     framed: true,
   },
   {
-    label: "Anime",
+    key: "anime",
     icon: "i-lucide-tv",
     color: "#E12885",
     img: img("anya-forger"),
@@ -38,6 +78,7 @@ const hobbies = [
   },
 ];
 
+// descriptions stay in English in every language: the cards link to English repos
 const projects = [
   {
     name: "agent-kit",
@@ -47,45 +88,53 @@ const projects = [
   },
   {
     name: "git-code-review",
-    description: "Review a whole branch as one staged diff in your editor.",
+    description:
+      "Review a whole branch as one staged diff in your editor.",
     language: "Shell",
   },
   {
     name: "pure",
-    description: "PHP linting tool for your CI.",
+    description:
+      "PHP linting tool for your CI.",
     language: "Shell",
   },
   {
     name: "rosa-router",
-    description: "Smart REST router for PHP.",
+    description:
+      "Smart REST router for PHP.",
     language: "PHP",
   },
   {
     name: "rosa-client",
-    description: "Smart REST client for PHP.",
+    description:
+      "Smart REST client for PHP.",
     language: "PHP",
   },
-  { name: "git-lga", description: "Logical Git Aliases.", language: "Shell" },
   {
-    name: "docker-lda",
-    description: "Logical Docker Aliases.",
+    name: "git-lga",
+    description:
+      "Logical Git Aliases.",
     language: "Shell",
   },
-  { name: "bash-lba", description: "Logical Bash Aliases.", language: "Shell" },
+  {
+    name: "docker-lda",
+    description:
+      "Logical Docker Aliases.",
+    language: "Shell",
+  },
+  {
+    name: "bash-lba",
+    description:
+      "Logical Bash Aliases.",
+    language: "Shell",
+  },
 ];
 
 const stack: Record<string, string[]> = {
   AI: ["Claude Code", "MCP", "Ollama"],
   Languages: ["TypeScript", "PHP", "Python", "Bash"],
   Frontend: ["Nuxt", "Tailwind CSS", "Vite"],
-  "Backend & Databases": [
-    "Laravel",
-    "Node.js",
-    "Bun",
-    "PostgreSQL",
-    "MySQL",
-    "MongoDB",
-  ],
+  Backend: ["Laravel", "Node.js", "Bun", "PostgreSQL", "MySQL", "MongoDB"],
   DevOps: ["Docker", "Linux", "GitHub", "GitHub Actions", "GitLab"],
   Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip"],
 };
@@ -125,40 +174,25 @@ const brand: Record<string, [string, string?]> = {
   Sentry: ["sentry"],
 };
 
-const sections = [
+const sectionDefs = [
+  { value: "projects", icon: "i-lucide-folder-git-2", slot: "projects" as const },
+  { value: "about", icon: "i-lucide-user", slot: "about" as const },
+  { value: "stack", icon: "i-lucide-layers", slot: "stack" as const },
   {
-    label: "Projects",
-    value: "projects",
-    icon: "i-lucide-folder-git-2",
-    slot: "projects" as const,
-  },
-  {
-    label: "Bio",
-    value: "about",
-    icon: "i-lucide-user",
-    slot: "about" as const,
-  },
-  {
-    label: "Tech Stack",
-    value: "stack",
-    icon: "i-lucide-layers",
-    slot: "stack" as const,
-  },
-  {
-    label: "Beyond Code",
     value: "beyond",
     icon: "i-lucide-sparkles",
     slot: "beyond" as const,
     class:
       "bg-linear-to-br from-[#39C5BB]/10 to-[#E12885]/5 ring-1 ring-[#39C5BB]/25",
   },
-  {
-    label: "Contact",
-    value: "contact",
-    icon: "i-lucide-mail",
-    slot: "contact" as const,
-  },
+  { value: "contact", icon: "i-lucide-mail", slot: "contact" as const },
 ];
+const sections = computed(() =>
+  sectionDefs.map((s) => ({
+    ...s,
+    label: t.value.sections[s.value as keyof typeof en.sections],
+  })),
+);
 
 const query = ref("");
 const q = computed(() => query.value.trim().toLowerCase());
@@ -170,17 +204,18 @@ const shownProjects = computed(() =>
 );
 const shownStack = computed(() =>
   Object.entries(stack)
-    .map(
-      ([group, items]) =>
-        [group, hit(group) ? items : items.filter((i) => hit(i))] as const,
-    )
+    .map(([key, items]) => {
+      const group = t.value.groups[key] ?? key;
+      return [group, hit(group) ? items : items.filter((i) => hit(i))] as const;
+    })
     .filter(([, items]) => items.length),
 );
 const shownSections = computed(() =>
-  sections.filter((s) => {
+  sections.value.filter((s) => {
     if (hit(s.label)) return true;
-    if (s.value === "about") return hit(...about);
-    if (s.value === "beyond") return hit(...hobbies.map((h) => h.label));
+    if (s.value === "about") return hit(t.value.lead, ...t.value.about);
+    if (s.value === "beyond")
+      return hit(...hobbies.map((h) => t.value.hobbies[h.key] ?? ""));
     if (s.value === "projects") return shownProjects.value.length > 0;
     if (s.value === "stack") return shownStack.value.length > 0;
     return hit("email", "linkedin", "github");
@@ -232,7 +267,7 @@ function goTo(value: string) {
 
 const active = ref("projects");
 function spy() {
-  const shown = sections.filter((s) => document.getElementById(s.value));
+  const shown = sectionDefs.filter((s) => document.getElementById(s.value));
   const atBottom =
     innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
   const passed = shown.filter(
@@ -247,7 +282,7 @@ onMounted(() => {
 onUnmounted(() => removeEventListener("scroll", spy));
 
 const nav = computed(() =>
-  sections.map((s) => ({
+  sections.value.map((s) => ({
     label: s.label,
     icon: s.icon,
     active: active.value === s.value,
@@ -283,7 +318,7 @@ const nav = computed(() =>
           class="mt-8"
         />
         <div class="mt-auto mb-4 flex flex-col items-center">
-          <span class="font-mono text-xs text-dimmed">Brazil · UTC−3</span>
+          <span class="font-mono text-xs text-dimmed">{{ t.location }}</span>
         </div>
         <div class="flex justify-center gap-1">
           <UButton
@@ -335,7 +370,7 @@ const nav = computed(() =>
           <UInput
             id="search"
             v-model="query"
-            placeholder="projects, skills…"
+            :placeholder="t.searchPlaceholder"
             variant="none"
             size="lg"
             class="flex-1"
@@ -350,11 +385,23 @@ const nav = computed(() =>
                 color="neutral"
                 variant="link"
                 size="sm"
-                aria-label="Clear search"
+                :aria-label="t.clearSearch"
                 @click="query = ''"
               />
             </template>
           </UInput>
+          <UDropdownMenu :items="langItems" :content="{ align: 'end' }">
+            <UButton
+              :icon="langCurrent.icon"
+              :ui="{
+                leadingIcon: 'color' in langCurrent ? langCurrent.color : '',
+              }"
+              trailing-icon="i-lucide-chevron-down"
+              color="neutral"
+              variant="ghost"
+              :aria-label="t.language"
+            />
+          </UDropdownMenu>
         </header>
 
         <section class="glass p-8 sm:p-10">
@@ -378,25 +425,24 @@ const nav = computed(() =>
           <h2
             class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl"
           >
-            I build web apps and
+            {{ t.hero.before }}
             <span
               class="bg-linear-to-r from-teal-600 via-cyan-600 to-violet-600 bg-clip-text text-transparent dark:from-teal-300 dark:via-cyan-300 dark:to-violet-400"
-              >developer tools</span
+              >{{ t.hero.highlight }}</span
             >.
           </h2>
           <p class="mt-5 max-w-xl text-muted">
-            Web developer since 2021 · finishing a B.Sc. in Software Engineering
-            at Univates in 2026.
+            {{ t.hero.subtitle }}
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <UButton
-              label="View projects"
+              :label="t.hero.viewProjects"
               trailing-icon="i-lucide-arrow-down"
               size="lg"
               @click="goTo('projects')"
             />
             <UButton
-              label="Say hi!"
+              :label="t.hero.sayHi"
               icon="i-lucide-mail"
               size="lg"
               color="neutral"
@@ -437,17 +483,16 @@ const nav = computed(() =>
                 class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
               />
               <p class="text-lg font-medium text-highlighted">
-                Good software isn't a luxury. It's a necessity.
+                {{ t.lead }}
               </p>
-              <p v-for="p in about" :key="p">{{ p }}</p>
+              <p v-for="p in t.about" :key="p">{{ p }}</p>
             </div>
           </template>
 
           <template #projects>
             <div class="mb-4 flex items-center justify-between gap-4">
               <p class="text-muted">
-                Things I've built, mostly tools that make developers' lives
-                easier.
+                {{ t.projectsIntro }}
               </p>
               <img
                 src="/resources/images/rocket.sticker.webp"
@@ -493,18 +538,18 @@ const nav = computed(() =>
           <template #beyond>
             <div class="space-y-4 pb-6">
               <p class="text-muted">
-                When the terminal's closed, this is where you'll find me
+                {{ t.beyondIntro }}
                 <span class="text-[#39C5BB]">♪</span>
               </p>
               <div class="flex flex-wrap justify-center gap-8 pt-2 sm:justify-start">
                 <figure
                   v-for="h in hobbies"
-                  :key="h.label"
+                  :key="h.key"
                   class="group flex flex-col items-center gap-3"
                 >
                   <img
                     :src="h.img"
-                    :alt="`${h.label} sticker`"
+                    :alt="t.hobbies[h.key]"
                     width="112"
                     height="112"
                     loading="lazy"
@@ -513,7 +558,7 @@ const nav = computed(() =>
                   />
                   <UBadge
                     as="figcaption"
-                    :label="h.label"
+                    :label="t.hobbies[h.key]"
                     size="lg"
                     color="neutral"
                     variant="outline"
@@ -573,7 +618,7 @@ const nav = computed(() =>
           v-if="!shownSections.length"
           class="glass p-8 text-center text-muted"
         >
-          Nothing matches “{{ query }}”.
+          {{ t.nothingMatches }} “{{ query }}”.
         </p>
 
         <section id="contact" class="glass scroll-mt-28 p-6">
@@ -585,10 +630,11 @@ const nav = computed(() =>
             loading="lazy"
             class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
           />
-          <h2 class="text-lg font-medium text-highlighted">Say hi!</h2>
+          <h2 class="text-lg font-medium text-highlighted">
+            {{ t.contact.title }}
+          </h2>
           <p class="mt-1 text-muted">
-            Curious about one of my projects, or just want to chat about code?
-            Drop me a line.
+            {{ t.contact.text }}
           </p>
           <div class="mt-4 flex flex-wrap gap-2">
             <UButton
@@ -621,7 +667,7 @@ const nav = computed(() =>
       v-model:open="menuOpen"
       side="left"
       title="Samuel Oberger Rockenbach"
-      description="Software Engineer"
+      :description="t.role"
     >
       <template #body>
         <UNavigationMenu :items="nav" orientation="vertical" highlight />
