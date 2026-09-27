@@ -480,7 +480,7 @@ const nav = computed(() =>
                 width="80"
                 height="80"
                 loading="lazy"
-                class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+                class="float-right mb-2 ml-4 size-20 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
               />
               <p class="text-lg font-medium text-highlighted">
                 {{ t.lead }}
@@ -500,7 +500,7 @@ const nav = computed(() =>
                 width="80"
                 height="80"
                 loading="lazy"
-                class="size-20 shrink-0 drop-shadow-lg"
+                class="size-20 shrink-0 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
               />
             </div>
             <div class="grid gap-4 pb-6 sm:grid-cols-2">
@@ -585,7 +585,7 @@ const nav = computed(() =>
                 width="80"
                 height="80"
                 loading="lazy"
-                class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+                class="float-right mb-2 ml-4 size-20 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
               />
               <div v-for="[group, items] in shownStack" :key="group">
                 <p class="mb-2 font-mono text-xs text-dimmed">
@@ -628,7 +628,7 @@ const nav = computed(() =>
             width="80"
             height="80"
             loading="lazy"
-            class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+            class="float-right mb-2 ml-4 size-20 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
           />
           <h2 class="text-lg font-medium text-highlighted">
             {{ t.contact.title }}
