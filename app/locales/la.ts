@@ -15,7 +15,7 @@ export default {
     subtitle:
       "Programmator interretialis ab anno MMXXI · baccalaureatum in Ingeniaria Programmatum apud Univates anno MMXXVI perficiens.",
     viewProjects: "Incepta vide",
-    sayHi: "Salutem dic!",
+    getInTouch: "Mecum loquere",
   },
   sections: {
     projects: "Incepta",
@@ -47,7 +47,7 @@ export default {
     anime: "Anime",
   },
   contact: {
-    title: "Salutem dic!",
-    text: "De aliquo incepto meo curiosus es, an modo de codice colloqui vis? Scribe mihi.",
+    title: "Mecum loquere",
+    text: "Libenter mihi scribe.",
   },
 } satisfies typeof en;

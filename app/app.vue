@@ -180,7 +180,7 @@ const sectionDefs = [
   { value: "stack", icon: "i-lucide-layers", slot: "stack" as const },
   {
     value: "beyond",
-    icon: "i-lucide-sparkles",
+    icon: "i-lucide-puzzle",
     slot: "beyond" as const,
     class:
       "bg-linear-to-br from-[#39C5BB]/10 to-[#E12885]/5 ring-1 ring-[#39C5BB]/25",
@@ -442,7 +442,7 @@ const nav = computed(() =>
               @click="goTo('projects')"
             />
             <UButton
-              :label="t.hero.sayHi"
+              :label="t.hero.getInTouch"
               icon="i-lucide-mail"
               size="lg"
               color="neutral"
@@ -537,10 +537,19 @@ const nav = computed(() =>
 
           <template #beyond>
             <div class="space-y-4 pb-6">
-              <p class="text-muted">
-                {{ t.beyondIntro }}
-                <span class="text-[#39C5BB]">♪</span>
-              </p>
+              <div class="flex items-center justify-between gap-4">
+                <p class="text-muted">
+                  {{ t.beyondIntro }}
+                </p>
+                <img
+                  src="/resources/images/puzzle.sticker.webp"
+                  alt=""
+                  width="80"
+                  height="80"
+                  loading="lazy"
+                  class="size-20 shrink-0 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
+                />
+              </div>
               <div class="flex flex-wrap justify-center gap-8 pt-2 sm:justify-start">
                 <figure
                   v-for="h in hobbies"

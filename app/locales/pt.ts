@@ -15,7 +15,7 @@ export default {
     subtitle:
       "Desenvolvedor web desde 2021 · concluindo o bacharelado em Engenharia de Software na Univates em 2026.",
     viewProjects: "Ver projetos",
-    sayHi: "Dá um alô!",
+    getInTouch: "Entre em contato",
   },
   sections: {
     projects: "Projetos",
@@ -40,14 +40,14 @@ export default {
     DevOps: "DevOps",
     Observability: "Observabilidade",
   },
-  beyondIntro: "Quando eu fecho o terminal, é aqui que você me encontra",
+  beyondIntro: "Quando eu fecho o terminal, é aqui que você me encontra!",
   hobbies: {
     miku: "Hatsune Miku",
     mihoyo: "miHoYo",
     anime: "Anime",
   },
   contact: {
-    title: "Dá um alô!",
-    text: "Ficou curioso sobre algum projeto ou só quer bater um papo sobre código? Me manda uma mensagem!",
+    title: "Entre em contato",
+    text: "Fique à vontade para me enviar uma mensagem.",
   },
 } satisfies typeof en;

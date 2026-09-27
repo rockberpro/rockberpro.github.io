@@ -12,7 +12,7 @@ export default {
     subtitle:
       "Web developer since 2021 · finishing a B.Sc. in Software Engineering at Univates in 2026.",
     viewProjects: "View projects",
-    sayHi: "Say hi!",
+    getInTouch: "Get in touch",
   },
   sections: {
     projects: "Projects",
@@ -37,14 +37,14 @@ export default {
     DevOps: "DevOps",
     Observability: "Observability",
   } as Record<string, string>,
-  beyondIntro: "When the terminal's closed, this is where you'll find me",
+  beyondIntro: "When the terminal's closed, this is where you'll find me!",
   hobbies: {
     miku: "Hatsune Miku",
     mihoyo: "miHoYo",
     anime: "Anime",
   } as Record<string, string>,
   contact: {
-    title: "Say hi!",
-    text: "Curious about one of my projects, or just want to chat about code? Drop me a line!",
+    title: "Get in touch",
+    text: "Feel free to drop me a line.",
   },
 };
