@@ -11,10 +11,11 @@ const about = [
   "I was writing software for years before coding agents came along, and they haven't changed how I think about it. Today they're part of my daily workflow: I own the architecture and the decisions, give the agents the context they need, and review everything they write before it ships.",
 ];
 
+// Miku's teal and pink; the miHoYo logo inherits the text color like the black brands
 const hobbies = [
-  { label: "Hatsune Miku", icon: "i-lucide-headphones" },
+  { label: "Hatsune Miku", icon: "i-lucide-headphones", color: "#39C5BB" },
   { label: "miHoYo games", icon: "i-simple-icons-mihoyo" },
-  { label: "Anime", icon: "i-lucide-tv" },
+  { label: "Anime", icon: "i-lucide-tv", color: "#E12885" },
 ];
 
 const projects = [
@@ -124,6 +125,14 @@ const sections = [
     slot: "stack" as const,
   },
   {
+    label: "Beyond Code",
+    value: "beyond",
+    icon: "i-lucide-sparkles",
+    slot: "beyond" as const,
+    class:
+      "bg-linear-to-br from-[#39C5BB]/10 to-[#E12885]/5 ring-1 ring-[#39C5BB]/25",
+  },
+  {
     label: "Contact",
     value: "contact",
     icon: "i-lucide-mail",
@@ -150,8 +159,8 @@ const shownStack = computed(() =>
 const shownSections = computed(() =>
   sections.filter((s) => {
     if (hit(s.label)) return true;
-    if (s.value === "about")
-      return hit(...about, ...hobbies.map((h) => h.label));
+    if (s.value === "about") return hit(...about);
+    if (s.value === "beyond") return hit(...hobbies.map((h) => h.label));
     if (s.value === "projects") return shownProjects.value.length > 0;
     if (s.value === "stack") return shownStack.value.length > 0;
     return hit("email", "linkedin", "github");
@@ -403,18 +412,6 @@ const nav = computed(() =>
                 Good software isn't a luxury. It's a necessity.
               </p>
               <p v-for="p in about" :key="p">{{ p }}</p>
-              <div class="flex flex-wrap items-center gap-2 pt-1">
-                <span class="text-sm">Outside work:</span>
-                <UBadge
-                  v-for="h in hobbies"
-                  :key="h.label"
-                  :label="h.label"
-                  :icon="h.icon"
-                  color="neutral"
-                  variant="outline"
-                  class="bg-white/5 ring-teal-900/15 dark:ring-teal-200/15"
-                />
-              </div>
             </div>
           </template>
 
@@ -448,6 +445,34 @@ const nav = computed(() =>
                   />{{ p.language }}
                 </p>
               </a>
+            </div>
+          </template>
+
+          <template #beyond>
+            <div class="space-y-4 pb-6">
+              <p class="text-muted">
+                When the terminal's closed, this is where you'll find me
+                <span class="text-[#39C5BB]">♪</span>
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <UBadge
+                  v-for="h in hobbies"
+                  :key="h.label"
+                  :label="h.label"
+                  size="lg"
+                  color="neutral"
+                  variant="outline"
+                  class="bg-white/5 ring-[#39C5BB]/30"
+                >
+                  <template #leading>
+                    <UIcon
+                      :name="h.icon"
+                      class="size-4"
+                      :style="{ color: h.color }"
+                    />
+                  </template>
+                </UBadge>
+              </div>
             </div>
           </template>
 
