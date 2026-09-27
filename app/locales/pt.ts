@@ -28,9 +28,9 @@ export default {
     "Coisas que construí, principalmente ferramentas que facilitam a vida de quem desenvolve.",
   lead: "Software bom não é luxo. É necessidade.",
   about: [
-    "Sou apaixonado por tecnologia desde criança. Os computadores me fisgaram cedo, então entrei em um curso técnico e passei três anos trabalhando com manutenção de computadores. Em 2021 migrei para o desenvolvimento web e, desde então, construo para a web. Estou concluindo o bacharelado em Engenharia de Software na Univates no fim de 2026.",
-    "Também adoro criar ferramentas para desenvolvedores, aqueles pequenos utilitários que deixam o trabalho do dia a dia mais fluido. Seja o que for, busco código limpo e uma arquitetura bem pensada: fácil de ler, sólida como uma rocha, fácil de manter e feita para envelhecer bem.",
-    "Eu já escrevia software havia anos antes de os agentes de código surgirem, e eles não mudaram a forma como penso. Hoje fazem parte do meu dia a dia: eu cuido da arquitetura e das decisões, dou aos agentes o contexto de que precisam e reviso tudo o que escrevem antes de ir para produção.",
+    "Sou apaixonado por tecnologia desde criança. Os computadores capturaram minha atenção desde cedo. Ingressei em um curso técnico e passei três anos trabalhando com manutenção de computadores. Em 2021 migrei para o desenvolvimento web e, desde então, construo para a web. Estou concluindo o bacharelado em Engenharia de Software na Univates no fim de 2026.",
+    "Também adoro criar ferramentas para desenvolvedores, pequenos utilitários que deixam o trabalho do dia a dia mais fluido. Seja o que for, busco código limpo e uma arquitetura bem pensada: fácil de ler, sólida, fácil de manter e feita para durar.",
+    "Eu já escrevia software alguns anos antes de os agentes de código surgirem, e eles não mudaram a forma como penso. Hoje fazem parte do meu dia a dia: eu cuido da arquitetura e das decisões, dou aos agentes o contexto de que precisam e reviso tudo o que escrevem antes de ir para produção.",
   ],
   groups: {
     AI: "IA",
