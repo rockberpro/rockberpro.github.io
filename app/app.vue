@@ -133,7 +133,7 @@ const sections = [
     slot: "projects" as const,
   },
   {
-    label: "About",
+    label: "Bio",
     value: "about",
     icon: "i-lucide-user",
     slot: "about" as const,
@@ -428,6 +428,14 @@ const nav = computed(() =>
 
           <template #about>
             <div class="space-y-3 pb-6 text-muted">
+              <img
+                src="/resources/images/bio.sticker.webp"
+                alt=""
+                width="80"
+                height="80"
+                loading="lazy"
+                class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+              />
               <p class="text-lg font-medium text-highlighted">
                 Good software isn't a luxury. It's a necessity.
               </p>
@@ -436,6 +444,20 @@ const nav = computed(() =>
           </template>
 
           <template #projects>
+            <div class="mb-4 flex items-center justify-between gap-4">
+              <p class="text-muted">
+                Things I've built, mostly tools that make developers' lives
+                easier.
+              </p>
+              <img
+                src="/resources/images/rocket.sticker.webp"
+                alt=""
+                width="80"
+                height="80"
+                loading="lazy"
+                class="size-20 shrink-0 drop-shadow-lg"
+              />
+            </div>
             <div class="grid gap-4 pb-6 sm:grid-cols-2">
               <a
                 v-for="p in shownProjects"
@@ -512,6 +534,14 @@ const nav = computed(() =>
 
           <template #stack>
             <div class="space-y-4 pb-6">
+              <img
+                src="/resources/images/windows-terminal.sticker.webp"
+                alt=""
+                width="80"
+                height="80"
+                loading="lazy"
+                class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+              />
               <div v-for="[group, items] in shownStack" :key="group">
                 <p class="mb-2 font-mono text-xs text-dimmed">
                   // {{ group.toLowerCase() }}
@@ -547,6 +577,14 @@ const nav = computed(() =>
         </p>
 
         <section id="contact" class="glass scroll-mt-28 p-6">
+          <img
+            src="/resources/images/mail.sticker.webp"
+            alt=""
+            width="80"
+            height="80"
+            loading="lazy"
+            class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
+          />
           <h2 class="text-lg font-medium text-highlighted">Contact</h2>
           <p class="mt-1 text-muted">Want to work together or just say hi?</p>
           <div class="mt-4 flex flex-wrap gap-2">
