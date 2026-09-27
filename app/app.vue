@@ -6,8 +6,9 @@ const links = {
 };
 
 const about = [
-  "I care about software that is well designed, tested and easy to maintain. That means a clear project structure, well-applied design patterns, disciplined Git history and versioning, CI that catches problems early, and observability in production so errors surface before users report them.",
-  "AI coding agents are part of my daily workflow, and I use them the way I'd use any good tool: I own the architecture and the decisions, give the agents the context they need, and review everything they write before it ships.",
+  "I've been into technology since I was a kid. Computers hooked me early, so I enrolled in a technician course and went on to spend three years working in computer maintenance. In 2021 I moved into web development and have been building for the web ever since. I'm finishing my B.Sc. in Software Engineering at Univates at the end of 2026.",
+  "I also love building developer tools, the small utilities that make everyday work smoother. Whatever I build, I aim for clean code and sound architecture: easy to read, solid as a rock, maintainable, and built to age well.",
+  "I was writing software for years before coding agents came along, and they haven't changed how I think about it. Today they're part of my daily workflow: I own the architecture and the decisions, give the agents the context they need, and review everything they write before it ships.",
 ];
 
 const projects = [
@@ -16,11 +17,6 @@ const projects = [
     description:
       "Claude Code plugin that sets up a project's agent harness: guards, an .agents/ structure, and skills that map the codebase into memory and rules.",
     language: "Shell",
-  },
-  {
-    name: "unimcp",
-    description: "Generic codebase-awareness MCP server.",
-    language: "TypeScript",
   },
   {
     name: "git-code-review",
@@ -49,12 +45,6 @@ const projects = [
     language: "Shell",
   },
   { name: "bash-lba", description: "Logical Bash Aliases.", language: "Shell" },
-  {
-    name: "powerhash",
-    description:
-      "A modular, lightweight PowerShell toolkit for file integrity management.",
-    language: "PowerShell",
-  },
 ];
 
 const stack: Record<string, string[]> = {
@@ -73,12 +63,11 @@ const stack: Record<string, string[]> = {
   Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip"],
 };
 
-// GitHub linguist colors; PowerShell's own #012456 vanishes on the dark bg
+// GitHub linguist colors
 const langColor: Record<string, string> = {
   Shell: "#89e051",
   TypeScript: "#3178c6",
   PHP: "#777bb4",
-  PowerShell: "#5391fe",
 };
 
 // simple-icons slug + brand hex; black brands inherit the text color
@@ -221,13 +210,6 @@ const nav = computed(() =>
   <UApp>
     <NuxtRouteAnnouncer />
 
-    <div class="blob top-[-12%] left-[-8%] h-[38rem] w-[46rem] bg-teal-500" />
-    <div
-      class="blob top-[34%] right-[2%] h-[30rem] w-[34rem] bg-violet-600 [animation-delay:-9s]"
-    />
-    <div
-      class="blob bottom-[-8%] left-[38%] h-[14rem] w-[18rem] bg-amber-400 opacity-30! [animation-delay:-17s]"
-    />
 
     <div class="mx-auto flex min-h-screen max-w-7xl gap-6 p-4 lg:p-6">
       <aside
@@ -324,12 +306,7 @@ const nav = computed(() =>
           </UInput>
         </header>
 
-        <section class="glass relative p-8 sm:p-10">
-          <span
-            class="pointer-events-none absolute -top-16 -right-10 -z-10 hidden font-mono sm:block text-[13rem] leading-none font-bold select-none bg-linear-to-br from-teal-400/15 to-violet-500/20 bg-clip-text text-transparent"
-            aria-hidden="true"
-            >{ }</span
-          >
+        <section class="glass p-8 sm:p-10">
           <div class="mb-6 flex items-center gap-3 lg:hidden">
             <UAvatar
               src="https://avatars.githubusercontent.com/u/99848589"
@@ -357,8 +334,7 @@ const nav = computed(() =>
             >.
           </h2>
           <p class="mt-5 max-w-xl text-muted">
-            Software Engineer · B.Sc. in Software Engineering at Univates. I
-            work proficiently with AI.
+            Software Engineer · B.Sc. in Software Engineering at Univates.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <UButton

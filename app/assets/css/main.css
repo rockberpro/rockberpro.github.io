@@ -11,35 +11,9 @@
   box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
 }
 
-html, body {
-  overflow-x: clip; /* hero brackets bleed past the edge without a sideways scroll */
-}
-
 body {
   background-image: radial-gradient(rgb(20 184 166 / 0.12) 1px, transparent 1px);
   background-size: 22px 22px;
-}
-
-/* film grain on top of everything, breaks up the flat gradients */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  pointer-events: none;
-  opacity: 0.07;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-.blob {
-  @apply pointer-events-none fixed -z-10 opacity-40 blur-3xl dark:opacity-25;
-  border-radius: 62% 38% 46% 54% / 41% 55% 45% 59%;
-  animation: drift 27s ease-in-out infinite alternate;
-}
-
-@keyframes drift {
-  50% { border-radius: 38% 62% 63% 37% / 55% 34% 66% 45%; }
-  to { transform: translate(7vw, 5vh) rotate(40deg) scale(1.12); }
 }
 
 /* cursor-following glow + gradient border, --x/--y set on mousemove */
@@ -88,5 +62,5 @@ body::after {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .blob, .caret::after { animation: none; }
+  .caret::after { animation: none; }
 }
