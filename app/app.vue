@@ -12,10 +12,30 @@ const about = [
 ];
 
 // Miku's teal and pink; the miHoYo logo inherits the text color like the black brands
+// stickers: die-cut images carry their own white outline, `framed` gets it from CSS
+const img = (name: string) => `/resources/images/${name}.sticker.webp`;
 const hobbies = [
-  { label: "Hatsune Miku", icon: "i-lucide-headphones", color: "#39C5BB" },
-  { label: "miHoYo games", icon: "i-simple-icons-mihoyo" },
-  { label: "Anime", icon: "i-lucide-tv", color: "#E12885" },
+  {
+    label: "Hatsune Miku",
+    icon: "i-lucide-headphones",
+    color: "#39C5BB",
+    img: img("miku-v6"),
+    tilt: "-rotate-3",
+  },
+  {
+    label: "miHoYo games",
+    icon: "i-simple-icons-mihoyo",
+    img: img("hoyoverse"),
+    tilt: "rotate-2",
+    framed: true,
+  },
+  {
+    label: "Anime",
+    icon: "i-lucide-tv",
+    color: "#E12885",
+    img: img("anya-forger"),
+    tilt: "-rotate-1",
+  },
 ];
 
 const projects = [
@@ -454,24 +474,38 @@ const nav = computed(() =>
                 When the terminal's closed, this is where you'll find me
                 <span class="text-[#39C5BB]">♪</span>
               </p>
-              <div class="flex flex-wrap gap-2">
-                <UBadge
+              <div class="flex flex-wrap justify-center gap-8 pt-2 sm:justify-start">
+                <figure
                   v-for="h in hobbies"
                   :key="h.label"
-                  :label="h.label"
-                  size="lg"
-                  color="neutral"
-                  variant="outline"
-                  class="bg-white/5 ring-[#39C5BB]/30"
+                  class="group flex flex-col items-center gap-3"
                 >
-                  <template #leading>
-                    <UIcon
-                      :name="h.icon"
-                      class="size-4"
-                      :style="{ color: h.color }"
-                    />
-                  </template>
-                </UBadge>
+                  <img
+                    :src="h.img"
+                    :alt="`${h.label} sticker`"
+                    width="112"
+                    height="112"
+                    loading="lazy"
+                    class="size-28 object-contain drop-shadow-lg transition duration-200 group-hover:-translate-y-1 group-hover:scale-105 group-hover:rotate-0"
+                    :class="[h.tilt, h.framed && 'rounded-2xl ring-4 ring-white']"
+                  />
+                  <UBadge
+                    as="figcaption"
+                    :label="h.label"
+                    size="lg"
+                    color="neutral"
+                    variant="outline"
+                    class="bg-white/5 ring-[#39C5BB]/30"
+                  >
+                    <template #leading>
+                      <UIcon
+                        :name="h.icon"
+                        class="size-4"
+                        :style="{ color: h.color }"
+                      />
+                    </template>
+                  </UBadge>
+                </figure>
               </div>
             </div>
           </template>
