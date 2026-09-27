@@ -9,19 +9,20 @@ const links = {
   email: "mailto:rockberpro@gmail.com",
 };
 
-// first visit: pick pt for Portuguese browsers; useState carries the server's pick to the client
-const accept = useRequestHeaders(["accept-language"])["accept-language"] ?? "";
-const detected = useState<"en" | "pt">("lang", () =>
-  accept.toLowerCase().startsWith("pt") ? "pt" : "en",
-);
-const lang = useCookie<"en" | "pt" | "la">("lang", {
-  default: () => detected.value,
+const lang = useCookie<"en" | "pt" | "la" | undefined>("lang", {
   maxAge: 60 * 60 * 24 * 365,
   sameSite: "lax",
 });
-// Latin is opt-in only, never auto-detected
+// the prerendered HTML is English; after hydration switch to the saved pick,
+// or on a first visit pt for Portuguese browsers. Latin is opt-in only, never auto-detected
+const mounted = ref(false);
+onMounted(() => {
+  lang.value ??= navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en";
+  mounted.value = true;
+});
+const current = computed(() => (mounted.value && lang.value) || "en");
 const messages = { en, pt, la };
-const t = computed<typeof en>(() => messages[lang.value] ?? en);
+const t = computed<typeof en>(() => messages[current.value] ?? en);
 const languages = [
   { code: "en", label: "English", icon: "i-circle-flags-us" },
   { code: "pt", label: "Português", icon: "i-circle-flags-br" },
@@ -38,17 +39,17 @@ const langItems = computed(() =>
     label: l.label,
     icon: l.icon,
     type: "checkbox" as const,
-    checked: lang.value === l.code,
+    checked: current.value === l.code,
     onSelect: () => (lang.value = l.code),
     ui: { itemLeadingIcon: "color" in l ? l.color : "" },
   })),
 );
 const langCurrent = computed(
-  () => languages.find((l) => l.code === lang.value) ?? languages[0],
+  () => languages.find((l) => l.code === current.value) ?? languages[0],
 );
 useHead({
   title: () => t.value.title,
-  htmlAttrs: { lang: () => (lang.value === "pt" ? "pt-BR" : lang.value) },
+  htmlAttrs: { lang: () => (current.value === "pt" ? "pt-BR" : current.value) },
 });
 
 // Miku's teal and pink; the miHoYo logo inherits the text color like the black brands
