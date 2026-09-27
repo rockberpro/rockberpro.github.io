@@ -11,6 +11,12 @@ const about = [
   "I was writing software for years before coding agents came along, and they haven't changed how I think about it. Today they're part of my daily workflow: I own the architecture and the decisions, give the agents the context they need, and review everything they write before it ships.",
 ];
 
+const hobbies = [
+  { label: "Hatsune Miku", icon: "i-lucide-headphones" },
+  { label: "miHoYo games", icon: "i-simple-icons-mihoyo" },
+  { label: "Anime", icon: "i-lucide-tv" },
+];
+
 const projects = [
   {
     name: "agent-kit",
@@ -144,7 +150,8 @@ const shownStack = computed(() =>
 const shownSections = computed(() =>
   sections.filter((s) => {
     if (hit(s.label)) return true;
-    if (s.value === "about") return hit(...about);
+    if (s.value === "about")
+      return hit(...about, ...hobbies.map((h) => h.label));
     if (s.value === "projects") return shownProjects.value.length > 0;
     if (s.value === "stack") return shownStack.value.length > 0;
     return hit("email", "linkedin", "github");
@@ -223,7 +230,6 @@ const nav = computed(() =>
 <template>
   <UApp>
     <NuxtRouteAnnouncer />
-
 
     <div class="mx-auto flex min-h-screen max-w-7xl gap-6 p-4 lg:p-6">
       <aside
@@ -304,7 +310,9 @@ const nav = computed(() =>
             variant="none"
             size="lg"
             class="flex-1"
-            :ui="{ base: 'px-0 font-mono caret-primary placeholder:text-dimmed' }"
+            :ui="{
+              base: 'px-0 font-mono caret-primary placeholder:text-dimmed',
+            }"
             @keydown.esc="query = ''"
           >
             <template v-if="query" #trailing>
@@ -348,8 +356,8 @@ const nav = computed(() =>
             >.
           </h2>
           <p class="mt-5 max-w-xl text-muted">
-            Web developer since 2021 · finishing a B.Sc. in Software
-            Engineering at Univates in 2026.
+            Web developer since 2021 · finishing a B.Sc. in Software Engineering
+            at Univates in 2026.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <UButton
@@ -382,7 +390,9 @@ const nav = computed(() =>
         >
           <template #leading="{ item, index }">
             <span :id="item.value" class="scroll-mt-28" />
-            <span class="rounded-md bg-primary/10 px-1.5 py-0.5 font-mono text-xs text-primary ring-1 ring-primary/20">
+            <span
+              class="rounded-md bg-primary/10 px-1.5 py-0.5 font-mono text-xs text-primary ring-1 ring-primary/20"
+            >
               {{ String(index + 1).padStart(2, "0") }}
             </span>
           </template>
@@ -393,6 +403,18 @@ const nav = computed(() =>
                 Good software isn't a luxury. It's a necessity.
               </p>
               <p v-for="p in about" :key="p">{{ p }}</p>
+              <div class="flex flex-wrap items-center gap-2 pt-1">
+                <span class="text-sm">Outside work:</span>
+                <UBadge
+                  v-for="h in hobbies"
+                  :key="h.label"
+                  :label="h.label"
+                  :icon="h.icon"
+                  color="neutral"
+                  variant="outline"
+                  class="bg-white/5 ring-teal-900/15 dark:ring-teal-200/15"
+                />
+              </div>
             </div>
           </template>
 
@@ -407,16 +429,19 @@ const nav = computed(() =>
                 @mousemove="spot"
               >
                 <div class="flex items-center justify-between">
-                  <span class="font-mono text-sm font-medium group-hover:text-primary">{{
-                    p.name
-                  }}</span>
+                  <span
+                    class="font-mono text-sm font-medium group-hover:text-primary"
+                    >{{ p.name }}</span
+                  >
                   <UIcon
                     name="i-lucide-arrow-up-right"
                     class="size-4 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
                   />
                 </div>
                 <p class="mt-2 text-sm text-muted">{{ p.description }}</p>
-                <p class="mt-3 flex items-center gap-1.5 font-mono text-xs text-dimmed">
+                <p
+                  class="mt-3 flex items-center gap-1.5 font-mono text-xs text-dimmed"
+                >
                   <span
                     class="size-2 rounded-full"
                     :style="{ backgroundColor: langColor[p.language] }"
@@ -429,9 +454,7 @@ const nav = computed(() =>
           <template #stack>
             <div class="space-y-4 pb-6">
               <div v-for="[group, items] in shownStack" :key="group">
-                <p
-                  class="mb-2 font-mono text-xs text-dimmed"
-                >
+                <p class="mb-2 font-mono text-xs text-dimmed">
                   // {{ group.toLowerCase() }}
                 </p>
                 <div class="flex flex-wrap gap-2">
@@ -455,7 +478,6 @@ const nav = computed(() =>
               </div>
             </div>
           </template>
-
         </UAccordion>
 
         <p
