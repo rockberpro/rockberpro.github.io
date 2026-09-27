@@ -334,7 +334,8 @@ const nav = computed(() =>
             >.
           </h2>
           <p class="mt-5 max-w-xl text-muted">
-            Software Engineer · B.Sc. in Software Engineering at Univates.
+            Web developer since 2021 · finishing a B.Sc. in Software
+            Engineering at Univates in 2026.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
             <UButton
@@ -374,6 +375,9 @@ const nav = computed(() =>
 
           <template #about>
             <div class="space-y-3 pb-6 text-muted">
+              <p class="text-lg font-medium text-highlighted">
+                Good software isn't a luxury. It's a necessity.
+              </p>
               <p v-for="p in about" :key="p">{{ p }}</p>
             </div>
           </template>
