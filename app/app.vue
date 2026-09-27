@@ -396,7 +396,7 @@ const nav = computed(() =>
               @click="goTo('projects')"
             />
             <UButton
-              label="Get in touch"
+              label="Say hi!"
               icon="i-lucide-mail"
               size="lg"
               color="neutral"
@@ -585,8 +585,11 @@ const nav = computed(() =>
             loading="lazy"
             class="float-right mb-2 ml-4 size-20 drop-shadow-lg"
           />
-          <h2 class="text-lg font-medium text-highlighted">Contact</h2>
-          <p class="mt-1 text-muted">Want to work together or just say hi?</p>
+          <h2 class="text-lg font-medium text-highlighted">Say hi!</h2>
+          <p class="mt-1 text-muted">
+            Curious about one of my projects, or just want to chat about code?
+            Drop me a line.
+          </p>
           <div class="mt-4 flex flex-wrap gap-2">
             <UButton
               :to="links.email"
