@@ -40,7 +40,7 @@ export default {
     DevOps: "DevOps",
     Observability: "Observatio",
   },
-  beyondIntro: "Clauso terminali, hic me invenies",
+  beyondIntro: "Clauso terminali, hic me invenies!",
   hobbies: {
     miku: "Hatsune Miku",
     mihoyo: "miHoYo",
