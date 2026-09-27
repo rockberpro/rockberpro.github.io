@@ -69,8 +69,44 @@ const stack: Record<string, string[]> = {
     "MySQL",
     "MongoDB",
   ],
-  DevOps: ["Docker", "Linux", "GitHub Actions", "GitLab"],
+  DevOps: ["Docker", "Linux", "GitHub", "GitHub Actions", "GitLab"],
   Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip"],
+};
+
+// GitHub linguist colors; PowerShell's own #012456 vanishes on the dark bg
+const langColor: Record<string, string> = {
+  Shell: "#89e051",
+  TypeScript: "#3178c6",
+  PHP: "#777bb4",
+  PowerShell: "#5391fe",
+};
+
+// simple-icons slug + brand hex; black brands inherit the text color
+const brand: Record<string, [string, string?]> = {
+  "Claude Code": ["claude", "#D97757"],
+  MCP: ["modelcontextprotocol"],
+  Ollama: ["ollama"],
+  TypeScript: ["typescript", "#3178C6"],
+  PHP: ["php", "#777BB4"],
+  Python: ["python", "#3776AB"],
+  Bash: ["gnubash", "#4EAA25"],
+  Nuxt: ["nuxt", "#00DC82"],
+  "Tailwind CSS": ["tailwindcss", "#06B6D4"],
+  Vite: ["vite", "#9135FF"],
+  Laravel: ["laravel", "#FF2D20"],
+  "Node.js": ["nodedotjs", "#5FA04E"],
+  Bun: ["bun"],
+  PostgreSQL: ["postgresql", "#4169E1"],
+  MySQL: ["mysql", "#4479A1"],
+  MongoDB: ["mongodb", "#47A248"],
+  Docker: ["docker", "#2496ED"],
+  Linux: ["linux", "#FCC624"],
+  GitHub: ["github"],
+  "GitHub Actions": ["githubactions", "#2088FF"],
+  GitLab: ["gitlab", "#FC6D26"],
+  Prometheus: ["prometheus", "#E6522C"],
+  Grafana: ["grafana", "#F46800"],
+  Sentry: ["sentry"],
 };
 
 const sections = [
@@ -126,11 +162,19 @@ const shownSections = computed(() =>
   }),
 );
 
-const open = ref<string[]>(["about"]);
+const open = ref<string[]>([]);
 watch(
   q,
-  (v) => (open.value = v ? shownSections.value.map((s) => s.value) : ["about"]),
+  () => (open.value = q.value ? shownSections.value.map((s) => s.value) : []),
 );
+
+// feeds the cursor position to the .spotlight glow and border
+function spot(e: MouseEvent) {
+  const el = e.currentTarget as HTMLElement;
+  const r = el.getBoundingClientRect();
+  el.style.setProperty("--x", `${e.clientX - r.left}px`);
+  el.style.setProperty("--y", `${e.clientY - r.top}px`);
+}
 
 const menuOpen = ref(false);
 function goTo(value: string) {
@@ -143,10 +187,27 @@ function goTo(value: string) {
   );
 }
 
+const active = ref("about");
+function spy() {
+  const shown = sections.filter((s) => document.getElementById(s.value));
+  const atBottom =
+    innerHeight + scrollY >= document.documentElement.scrollHeight - 2;
+  const passed = shown.filter(
+    (s) => document.getElementById(s.value)!.getBoundingClientRect().top < 160,
+  );
+  active.value = (atBottom ? shown : passed).at(-1)?.value ?? "about";
+}
+onMounted(() => {
+  spy();
+  addEventListener("scroll", spy, { passive: true });
+});
+onUnmounted(() => removeEventListener("scroll", spy));
+
 const nav = computed(() =>
   sections.map((s) => ({
     label: s.label,
     icon: s.icon,
+    active: active.value === s.value,
     onSelect: () => goTo(s.value),
   })),
 );
@@ -158,10 +219,10 @@ const nav = computed(() =>
 
     <div class="blob top-[-12%] left-[-8%] h-[38rem] w-[46rem] bg-teal-500" />
     <div
-      class="blob top-[34%] right-[-12%] h-[30rem] w-[34rem] bg-emerald-600 [animation-delay:-9s]"
+      class="blob top-[34%] right-[2%] h-[30rem] w-[34rem] bg-violet-600 [animation-delay:-9s]"
     />
     <div
-      class="blob bottom-[-8%] left-[38%] h-[14rem] w-[18rem] bg-amber-400 opacity-20! [animation-delay:-17s]"
+      class="blob bottom-[-8%] left-[38%] h-[14rem] w-[18rem] bg-amber-400 opacity-30! [animation-delay:-17s]"
     />
 
     <div class="mx-auto flex min-h-screen max-w-7xl gap-6 p-4 lg:p-6">
@@ -180,8 +241,16 @@ const nav = computed(() =>
           </h1>
           <p class="mt-1 font-mono text-xs text-primary">@rockberpro</p>
         </div>
-        <UNavigationMenu :items="nav" orientation="vertical" class="mt-8" />
-        <div class="mt-auto flex justify-center gap-1">
+        <UNavigationMenu
+          :items="nav"
+          orientation="vertical"
+          highlight
+          class="mt-8"
+        />
+        <div class="mt-auto mb-4 flex flex-col items-center">
+          <span class="font-mono text-xs text-dimmed">Brazil · UTC−3</span>
+        </div>
+        <div class="flex justify-center gap-1">
           <UButton
             :to="links.github"
             target="_blank"
@@ -253,19 +322,33 @@ const nav = computed(() =>
 
         <section class="glass relative p-8 sm:p-10">
           <span
-            class="pointer-events-none absolute -top-16 -right-10 font-mono text-[13rem] leading-none font-bold text-primary/10 select-none"
+            class="pointer-events-none absolute -top-16 -right-10 -z-10 hidden font-mono sm:block text-[13rem] leading-none font-bold select-none bg-linear-to-br from-teal-400/15 to-violet-500/20 bg-clip-text text-transparent"
             aria-hidden="true"
             >{ }</span
           >
+          <div class="mb-6 flex items-center gap-3 lg:hidden">
+            <UAvatar
+              src="https://avatars.githubusercontent.com/u/99848589"
+              alt="Samuel Oberger Rockenbach"
+              size="xl"
+              class="rounded-xl ring-1 ring-primary/40 ring-offset-2 ring-offset-transparent"
+            />
+            <div>
+              <p class="leading-tight font-semibold text-highlighted">
+                Samuel Oberger Rockenbach
+              </p>
+              <p class="font-mono text-xs text-primary">@rockberpro</p>
+            </div>
+          </div>
           <p class="caret font-mono text-xs text-muted">
             <span class="text-primary">~/rockberpro</span> $ whoami
           </p>
           <h2
-            class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight sm:text-5xl"
+            class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl"
           >
             I build web apps and
             <span
-              class="text-primary underline decoration-primary/40 decoration-wavy decoration-2 underline-offset-8"
+              class="bg-linear-to-r from-teal-600 via-cyan-600 to-violet-600 bg-clip-text text-transparent dark:from-teal-300 dark:via-cyan-300 dark:to-violet-400"
               >developer tools</span
             >.
           </h2>
@@ -273,6 +356,22 @@ const nav = computed(() =>
             Software Engineer · B.Sc. in Software Engineering at Univates. I
             work proficiently with AI.
           </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <UButton
+              label="View projects"
+              trailing-icon="i-lucide-arrow-down"
+              size="lg"
+              @click="goTo('projects')"
+            />
+            <UButton
+              label="Get in touch"
+              icon="i-lucide-mail"
+              size="lg"
+              color="neutral"
+              variant="ghost"
+              @click="goTo('contact')"
+            />
+          </div>
         </section>
 
         <UAccordion
@@ -282,12 +381,12 @@ const nav = computed(() =>
           :ui="{
             root: 'space-y-4',
             item: 'glass border-0 px-6',
-            trigger: 'py-5 text-lg font-medium',
+            trigger: 'py-5 text-lg font-medium text-highlighted',
           }"
         >
           <template #leading="{ item, index }">
             <span :id="item.value" class="scroll-mt-28" />
-            <span class="w-6 font-mono text-xs text-primary">
+            <span class="rounded-md bg-primary/10 px-1.5 py-0.5 font-mono text-xs text-primary ring-1 ring-primary/20">
               {{ String(index + 1).padStart(2, "0") }}
             </span>
           </template>
@@ -305,7 +404,8 @@ const nav = computed(() =>
                 :key="p.name"
                 :href="`${links.github}/${p.name}`"
                 target="_blank"
-                class="glass group rounded-xl p-4 transition hover:border-primary/40 hover:bg-white/60 dark:hover:bg-teal-900/20"
+                class="glass spotlight group rounded-xl p-4 transition hover:bg-white/60 dark:hover:bg-white/[0.05]"
+                @mousemove="spot"
               >
                 <div class="flex items-center justify-between">
                   <span class="font-mono text-sm font-medium group-hover:text-primary">{{
@@ -318,7 +418,10 @@ const nav = computed(() =>
                 </div>
                 <p class="mt-2 text-sm text-muted">{{ p.description }}</p>
                 <p class="mt-3 flex items-center gap-1.5 font-mono text-xs text-dimmed">
-                  <span class="size-2 rounded-full bg-primary/70" />{{ p.language }}
+                  <span
+                    class="size-2 rounded-full"
+                    :style="{ backgroundColor: langColor[p.language] }"
+                  />{{ p.language }}
                 </p>
               </a>
             </div>
@@ -340,7 +443,15 @@ const nav = computed(() =>
                     color="neutral"
                     variant="outline"
                     class="bg-white/5 ring-teal-900/15 dark:ring-teal-200/15"
-                  />
+                  >
+                    <template v-if="brand[i]" #leading>
+                      <UIcon
+                        :name="`i-simple-icons-${brand[i][0]}`"
+                        class="size-3.5"
+                        :style="{ color: brand[i][1] }"
+                      />
+                    </template>
+                  </UBadge>
                 </div>
               </div>
             </div>
@@ -389,7 +500,7 @@ const nav = computed(() =>
       description="Software Engineer"
     >
       <template #body>
-        <UNavigationMenu :items="nav" orientation="vertical" />
+        <UNavigationMenu :items="nav" orientation="vertical" highlight />
       </template>
     </USlideover>
   </UApp>

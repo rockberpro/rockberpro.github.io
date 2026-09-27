@@ -7,7 +7,7 @@
 }
 
 @utility glass {
-  @apply rounded-2xl border border-teal-900/10 bg-white/45 shadow-lg shadow-teal-950/5 backdrop-blur-xl dark:border-teal-200/10 dark:bg-teal-950/20 dark:shadow-black/40;
+  @apply rounded-2xl border border-teal-900/10 bg-white/45 shadow-lg shadow-teal-950/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/[0.03] dark:shadow-black/40;
   box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.12);
 }
 
@@ -40,6 +40,42 @@ body::after {
 @keyframes drift {
   50% { border-radius: 38% 62% 63% 37% / 55% 34% 66% 45%; }
   to { transform: translate(7vw, 5vh) rotate(40deg) scale(1.12); }
+}
+
+/* cursor-following glow + gradient border, --x/--y set on mousemove */
+.spotlight {
+  position: relative;
+  --x: 50%;
+  --y: 50%;
+}
+
+.spotlight::before,
+.spotlight::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.spotlight::before {
+  inset: 0;
+  background: radial-gradient(320px circle at var(--x) var(--y), rgb(45 212 191 / 0.1), transparent 70%);
+}
+
+/* sits over the 1px border; the mask cuts out everything but that ring */
+.spotlight::after {
+  inset: -1px;
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--x) var(--y), rgb(45 212 191 / 0.9), rgb(139 92 246 / 0.7) 45%, transparent 80%);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.spotlight:hover::before,
+.spotlight:hover::after {
+  opacity: 1;
 }
 
 .caret::after {
