@@ -113,19 +113,19 @@ const projects = [
   {
     name: "git-lga",
     description:
-      "Logical Git Aliases.",
+      "Logical Git aliases: mnemonics you can guess instead of memorize.",
     language: "Shell",
   },
   {
     name: "docker-lda",
     description:
-      "Logical Docker Aliases.",
+      "Logical Docker aliases: shortcuts that read like the command they run.",
     language: "Shell",
   },
   {
     name: "bash-lba",
     description:
-      "Logical Bash Aliases.",
+      "Logical Bash aliases: intuitive shortcuts, no cheat sheet needed.",
     language: "Shell",
   },
 ];
