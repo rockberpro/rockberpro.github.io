@@ -180,7 +180,7 @@ const sectionDefs = [
   { value: "stack", icon: "i-lucide-layers", slot: "stack" as const },
   {
     value: "beyond",
-    icon: "i-lucide-puzzle",
+    icon: "i-lucide-gamepad-2",
     slot: "beyond" as const,
     class:
       "bg-linear-to-br from-[#39C5BB]/10 to-[#E12885]/5 ring-1 ring-[#39C5BB]/25",
@@ -542,7 +542,7 @@ const nav = computed(() =>
                   {{ t.beyondIntro }}
                 </p>
                 <img
-                  src="/resources/images/puzzle.sticker.webp"
+                  src="/resources/images/controller.sticker.webp"
                   alt=""
                   width="80"
                   height="80"
