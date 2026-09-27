@@ -111,16 +111,16 @@ const brand: Record<string, [string, string?]> = {
 
 const sections = [
   {
-    label: "About",
-    value: "about",
-    icon: "i-lucide-user",
-    slot: "about" as const,
-  },
-  {
     label: "Projects",
     value: "projects",
     icon: "i-lucide-folder-git-2",
     slot: "projects" as const,
+  },
+  {
+    label: "About",
+    value: "about",
+    icon: "i-lucide-user",
+    slot: "about" as const,
   },
   {
     label: "Tech Stack",
@@ -162,10 +162,14 @@ const shownSections = computed(() =>
   }),
 );
 
-const open = ref<string[]>([]);
+const defaultOpen = ["projects", "contact"];
+const open = ref<string[]>([...defaultOpen]);
 watch(
   q,
-  () => (open.value = q.value ? shownSections.value.map((s) => s.value) : []),
+  () =>
+    (open.value = q.value
+      ? shownSections.value.map((s) => s.value)
+      : [...defaultOpen]),
 );
 
 // feeds the cursor position to the .spotlight glow and border
@@ -187,7 +191,7 @@ function goTo(value: string) {
   );
 }
 
-const active = ref("about");
+const active = ref("projects");
 function spy() {
   const shown = sections.filter((s) => document.getElementById(s.value));
   const atBottom =
@@ -195,7 +199,7 @@ function spy() {
   const passed = shown.filter(
     (s) => document.getElementById(s.value)!.getBoundingClientRect().top < 160,
   );
-  active.value = (atBottom ? shown : passed).at(-1)?.value ?? "about";
+  active.value = (atBottom ? shown : passed).at(-1)?.value ?? "projects";
 }
 onMounted(() => {
   spy();
@@ -377,6 +381,7 @@ const nav = computed(() =>
         <UAccordion
           v-model="open"
           type="multiple"
+          :unmount-on-hide="false"
           :items="shownSections"
           :ui="{
             root: 'space-y-4',
