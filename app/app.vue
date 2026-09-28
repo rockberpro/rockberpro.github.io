@@ -52,7 +52,7 @@ useHead({
   htmlAttrs: { lang: () => (current.value === "pt" ? "pt-BR" : current.value) },
 });
 
-// Miku's teal and pink; the miHoYo logo inherits the text color like the black brands
+// Miku's teal and pink; the miHoYo controller inherits the text color
 // stickers: die-cut images carry their own white outline, `framed` gets it from CSS
 const img = (name: string) => `/resources/images/${name}.sticker.webp`;
 const hobbies = [
@@ -65,7 +65,7 @@ const hobbies = [
   },
   {
     key: "mihoyo",
-    icon: "i-simple-icons-mihoyo",
+    icon: "i-lucide-gamepad-2",
     img: img("hoyoverse"),
     tilt: "rotate-2",
     framed: true,
