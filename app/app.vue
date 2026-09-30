@@ -66,9 +66,8 @@ const hobbies = [
   {
     key: "mihoyo",
     icon: "i-lucide-gamepad-2",
-    img: img("hoyoverse"),
+    img: img("anby"),
     tilt: "rotate-2",
-    framed: true,
   },
   {
     key: "anime",
