@@ -42,7 +42,7 @@ export default {
   },
   beyondIntro: "Clauso terminali, hic me invenies!",
   hobbies: {
-    miku: "Hatsune Miku",
+    miku: "Vocaloid",
     mihoyo: "miHoYo",
     anime: "Anime",
   },

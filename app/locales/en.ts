@@ -39,7 +39,7 @@ export default {
   } as Record<string, string>,
   beyondIntro: "When the terminal's closed, this is where you'll find me!",
   hobbies: {
-    miku: "Hatsune Miku",
+    miku: "Vocaloid",
     mihoyo: "miHoYo",
     anime: "Anime",
   } as Record<string, string>,

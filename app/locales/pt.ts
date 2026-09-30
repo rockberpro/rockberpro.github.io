@@ -42,7 +42,7 @@ export default {
   },
   beyondIntro: "Quando eu fecho o terminal, é aqui que você me encontra!",
   hobbies: {
-    miku: "Hatsune Miku",
+    miku: "Vocaloid",
     mihoyo: "miHoYo",
     anime: "Anime",
   },
