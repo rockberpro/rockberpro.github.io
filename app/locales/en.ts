@@ -19,7 +19,43 @@ export default {
     stack: "Tech stack",
     beyond: "Beyond code",
     contact: "Contact",
+    experience: "Experience",
   },
+  experience: {
+    boleto: {
+      title: "Hybrid boleto (boleto + Pix)",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "In progress",
+      text: "Implementing the new hybrid boleto, a bank payment slip that also carries a Pix QR code so it can be paid instantly.",
+    },
+    pix: {
+      title: "Pix payment integration",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Jan 2025 – Jun 2025",
+      text: "Helped build the integration with Pix, Brazil's instant payment system.",
+    },
+    nfe: {
+      title: "Service invoice (NFS-e) emitter rewrite",
+      org: "Universidade do Vale do Taquari (Univates) · Tax Reform project",
+      period: "Oct 2025 – present",
+      text: "Rewrote the university's electronic service invoice (NFS-e) emitter from scratch with Laravel 13 and Nuxt 4 to meet the rules of Brazil's tax reform (IBS/CBS). Delivered an urgent first release in three months (January 2026), and development continues as the regulations change.",
+    },
+    erp: {
+      title: "University ERP maintenance",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Ongoing",
+      text: "Maintaining the university's ERP, which manages its cash flow, receivables and client records.",
+    },
+    legacy: {
+      title: "Hardening legacy PHP systems",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Ongoing",
+      text: "Proposed adding Sentry observability and sturdier error handling to brittle legacy PHP systems, and have been carrying out the deep refactors it takes. With a rewrite not yet possible and the status quo unsustainable, the work is keeping the systems alive instead of letting them be scrapped too early.",
+    },
+  } as Record<
+    string,
+    { title: string; org: string; period: string; text: string }
+  >,
   projectsIntro:
     "Things I've built, mostly tools that make developers' lives easier.",
   lead: "Good software isn't a luxury. It's a necessity.",

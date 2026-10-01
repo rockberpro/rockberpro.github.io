@@ -22,7 +22,43 @@ export default {
     stack: "Tecnologias",
     beyond: "Além do código",
     contact: "Contato",
+    experience: "Experiência",
   },
+  experience: {
+    boleto: {
+      title: "Boleto Híbrido (boleto + Pix)",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Em andamento",
+      text: "Implementando o novo Boleto Híbrido, que traz um QR Code Pix junto ao boleto para pagamento instantâneo.",
+    },
+    pix: {
+      title: "Integração com o Pix",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "jan. 2025 – jun. 2025",
+      text: "Ajudei a construir a integração com o Pix, o sistema de pagamentos instantâneos do Brasil.",
+    },
+    nfe: {
+      title: "Reescrita do emissor de NFS-e",
+      org: "Universidade do Vale do Taquari (Univates) · Projeto da Reforma Tributária",
+      period: "out. 2025 – atual",
+      text: "Reescrevi do zero o emissor de notas fiscais de serviço (NFS-e) da universidade com Laravel 13 e Nuxt 4, adequando-o às novas regras da Reforma Tributária (IBS/CBS). A primeira versão, emergencial, foi entregue em três meses (janeiro de 2026), e o desenvolvimento segue conforme a legislação muda.",
+    },
+    erp: {
+      title: "Manutenção do ERP da universidade",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Contínuo",
+      text: "Faço a manutenção contínua do ERP da universidade, que controla o fluxo financeiro (títulos) e a gestão de clientes.",
+    },
+    legacy: {
+      title: "Robustez em sistemas PHP legados",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Contínuo",
+      text: "Propus adotar observabilidade com Sentry e um tratamento de erros mais robusto em sistemas PHP legados e frágeis, e venho conduzindo as refatorações profundas necessárias. Sem condições para uma reescrita, e sem como seguir daquele jeito, esse trabalho vem evitando que os sistemas sejam descartados prematuramente.",
+    },
+  } as Record<
+    string,
+    { title: string; org: string; period: string; text: string }
+  >,
   projectsIntro:
     "Coisas que construí, principalmente ferramentas que facilitam a vida de quem desenvolve.",
   lead: "Software bom não é luxo. É necessidade.",
