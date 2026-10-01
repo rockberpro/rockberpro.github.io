@@ -17,7 +17,9 @@ const lang = useCookie<"en" | "pt" | "la" | undefined>("lang", {
 // or on a first visit pt for Portuguese browsers. Latin is opt-in only, never auto-detected
 const mounted = ref(false);
 onMounted(() => {
-  lang.value ??= navigator.language.toLowerCase().startsWith("pt") ? "pt" : "en";
+  lang.value ??= navigator.language.toLowerCase().startsWith("pt")
+    ? "pt"
+    : "en";
   mounted.value = true;
 });
 const current = computed(() => (mounted.value && lang.value) || "en");
@@ -66,9 +68,9 @@ const hobbies = [
   {
     key: "mihoyo",
     icon: "i-lucide-gamepad-2",
-    img: img("hoyoverse"),
+    img: img("belle"),
     tilt: "rotate-2",
-    framed: true,
+    framed: false,
   },
   {
     key: "anime",
@@ -89,26 +91,22 @@ const projects = [
   },
   {
     name: "git-code-review",
-    description:
-      "Review a whole branch as one staged diff in your editor.",
+    description: "Review a whole branch as one staged diff in your editor.",
     language: "Shell",
   },
   {
     name: "pure",
-    description:
-      "PHP linting tool for your CI.",
+    description: "PHP linting tool for your CI.",
     language: "Shell",
   },
   {
     name: "rosa-router",
-    description:
-      "Smart REST router for PHP.",
+    description: "Smart REST router for PHP.",
     language: "PHP",
   },
   {
     name: "rosa-client",
-    description:
-      "Smart REST client for PHP.",
+    description: "Smart REST client for PHP.",
     language: "PHP",
   },
   {
@@ -176,7 +174,11 @@ const brand: Record<string, [string, string?]> = {
 };
 
 const sectionDefs = [
-  { value: "projects", icon: "i-lucide-folder-git-2", slot: "projects" as const },
+  {
+    value: "projects",
+    icon: "i-lucide-folder-git-2",
+    slot: "projects" as const,
+  },
   { value: "about", icon: "i-lucide-user", slot: "about" as const },
   { value: "stack", icon: "i-lucide-layers", slot: "stack" as const },
   {
@@ -551,7 +553,9 @@ const nav = computed(() =>
                   class="size-20 shrink-0 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
                 />
               </div>
-              <div class="flex flex-wrap justify-center gap-8 pt-2 sm:justify-start">
+              <div
+                class="flex flex-wrap justify-center gap-8 pt-2 sm:justify-start"
+              >
                 <figure
                   v-for="h in hobbies"
                   :key="h.key"
@@ -564,7 +568,10 @@ const nav = computed(() =>
                     height="112"
                     loading="lazy"
                     class="size-28 object-contain drop-shadow-lg transition duration-200 group-hover:-translate-y-1 group-hover:scale-105 group-hover:rotate-0"
-                    :class="[h.tilt, h.framed && 'rounded-2xl ring-4 ring-white']"
+                    :class="[
+                      h.tilt,
+                      h.framed && 'rounded-2xl ring-4 ring-white',
+                    ]"
                   />
                   <UBadge
                     as="figcaption"
