@@ -4,7 +4,6 @@ import type en from "./en";
 export default {
   title: "Samuel Oberger Rockenbach · Ingeniarius Programmatum",
   role: "Ingeniarius Programmatum",
-  location: "Brasilia · UTC−3",
   language: "Lingua",
   searchPlaceholder: "incepta, artes…",
   clearSearch: "Quaesitum dele",
