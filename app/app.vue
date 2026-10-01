@@ -133,8 +133,8 @@ const projects = [
 const experience = [
   { key: "boleto", stack: [] },
   { key: "erp", stack: ["PHP"] },
-  { key: "nfe", stack: ["Laravel", "Nuxt"] },
   { key: "legacy", stack: ["PHP", "Sentry"] },
+  { key: "nfe", stack: ["Laravel", "Nuxt"] },
   { key: "pix", stack: ["Laravel", "Nuxt"] },
 ];
 
