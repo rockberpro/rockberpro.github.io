@@ -561,7 +561,8 @@ const nav = computed(() =>
               <article
                 v-for="e in shownExperience"
                 :key="e.key"
-                class="glass rounded-xl p-4"
+                class="glass spotlight rounded-xl p-4 transition hover:bg-white/60 dark:hover:bg-white/[0.05]"
+                @mousemove="spot"
               >
                 <div
                   class="flex flex-wrap items-baseline justify-between gap-x-4"
