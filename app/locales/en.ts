@@ -1,7 +1,6 @@
 export default {
   title: "Samuel Oberger Rockenbach · Software Engineer",
   role: "Software Engineer",
-  location: "Brazil · UTC−3",
   language: "Language",
   searchPlaceholder: "projects, skills…",
   clearSearch: "Clear search",

@@ -4,7 +4,6 @@ import type en from "./en";
 export default {
   title: "Samuel Oberger Rockenbach · Engenheiro de Software",
   role: "Engenheiro de Software",
-  location: "Brasil · UTC−3",
   language: "Idioma",
   searchPlaceholder: "projetos, tecnologias…",
   clearSearch: "Limpar busca",

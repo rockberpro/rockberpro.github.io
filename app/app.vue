@@ -320,10 +320,7 @@ const nav = computed(() =>
           highlight
           class="mt-8"
         />
-        <div class="mt-auto mb-4 flex flex-col items-center">
-          <span class="font-mono text-xs text-dimmed">{{ t.location }}</span>
-        </div>
-        <div class="flex justify-center gap-1">
+        <div class="mt-auto flex justify-center gap-1">
           <UButton
             :to="links.github"
             target="_blank"
