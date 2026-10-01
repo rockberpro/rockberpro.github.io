@@ -32,10 +32,10 @@ export default {
       text: "Implementando o novo Boleto Híbrido, que traz um QR Code Pix junto ao boleto para pagamento instantâneo.",
     },
     pix: {
-      title: "Integração com o Pix",
+      title: "Integração nativa com o Pix",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "jan. 2025 – jun. 2025",
-      text: "Ajudei a construir a integração com o Pix, o sistema de pagamentos instantâneos do Brasil.",
+      text: "Ajudei a construir uma integração nativa com o Pix, o sistema de pagamentos instantâneos do Brasil, substituindo as ferramentas de terceiros que a universidade usava.",
     },
     nfe: {
       title: "Reescrita do emissor de NFS-e",

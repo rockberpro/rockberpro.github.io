@@ -29,10 +29,10 @@ export default {
       text: "Implementing the new hybrid boleto, a bank payment slip that also carries a Pix QR code so it can be paid instantly.",
     },
     pix: {
-      title: "Pix payment integration",
+      title: "Native Pix integration",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Jan 2025 – Jun 2025",
-      text: "Helped build the integration with Pix, Brazil's instant payment system.",
+      text: "Helped build a native integration with Pix, Brazil's instant payment system, replacing the third-party tools the university relied on.",
     },
     nfe: {
       title: "Service invoice (NFS-e) emitter rewrite",

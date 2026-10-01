@@ -32,10 +32,10 @@ export default {
       text: "Novum boleto hybridum perficio, schedulam solutionis quae etiam signum QR Pix fert, ut statim solvi possit.",
     },
     pix: {
-      title: "Pix coniunctum",
+      title: "Pix coniunctum proprium",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Ian. MMXXV – Iun. MMXXV",
-      text: "Coniunctionem cum Pix, systemate solutionum instantanearum Brasiliae, aedificare adiuvi.",
+      text: "Coniunctionem propriam cum Pix, systemate solutionum instantanearum Brasiliae, aedificare adiuvi, instrumentis alienis relictis.",
     },
     nfe: {
       title: "Emissor tabularum fiscalium servitiorum (NFS-e) rescriptus",
