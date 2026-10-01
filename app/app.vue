@@ -129,6 +129,15 @@ const projects = [
   },
 ];
 
+// title and text live in the locales; stack names reuse the `brand` icons
+const experience = [
+  { key: "boleto", stack: [] },
+  { key: "erp", stack: ["PHP"] },
+  { key: "nfe", stack: ["Laravel", "Nuxt"] },
+  { key: "legacy", stack: ["PHP", "Sentry"] },
+  { key: "pix", stack: ["Laravel", "Nuxt"] },
+];
+
 const stack: Record<string, string[]> = {
   AI: ["Claude Code", "MCP", "Ollama"],
   Languages: ["TypeScript", "PHP", "Python", "Bash"],
@@ -179,6 +188,11 @@ const sectionDefs = [
     icon: "i-lucide-folder-git-2",
     slot: "projects" as const,
   },
+  {
+    value: "experience",
+    icon: "i-lucide-briefcase",
+    slot: "experience" as const,
+  },
   { value: "about", icon: "i-lucide-user", slot: "about" as const },
   { value: "stack", icon: "i-lucide-layers", slot: "stack" as const },
   {
@@ -205,6 +219,12 @@ const hit = (...texts: string[]) =>
 const shownProjects = computed(() =>
   projects.filter((p) => hit(p.name, p.description, p.language)),
 );
+const shownExperience = computed(() =>
+  experience.filter((e) => {
+    const m = t.value.experience[e.key];
+    return m && hit(m.title, m.org, m.text, ...e.stack);
+  }),
+);
 const shownStack = computed(() =>
   Object.entries(stack)
     .map(([key, items]) => {
@@ -220,6 +240,7 @@ const shownSections = computed(() =>
     if (s.value === "beyond")
       return hit(...hobbies.map((h) => t.value.hobbies[h.key] ?? ""));
     if (s.value === "projects") return shownProjects.value.length > 0;
+    if (s.value === "experience") return shownExperience.value.length > 0;
     if (s.value === "stack") return shownStack.value.length > 0;
     return hit("email", "linkedin", "github");
   }),
@@ -532,6 +553,51 @@ const nav = computed(() =>
                   />{{ p.language }}
                 </p>
               </a>
+            </div>
+          </template>
+
+          <template #experience>
+            <div class="space-y-4 pb-6">
+              <article
+                v-for="e in shownExperience"
+                :key="e.key"
+                class="glass rounded-xl p-4"
+              >
+                <div
+                  class="flex flex-wrap items-baseline justify-between gap-x-4"
+                >
+                  <h3 class="font-medium text-highlighted">
+                    {{ t.experience[e.key]!.title }}
+                  </h3>
+                  <span class="font-mono text-xs text-dimmed">{{
+                    t.experience[e.key]!.period
+                  }}</span>
+                </div>
+                <p class="mt-1 text-sm text-primary">
+                  {{ t.experience[e.key]!.org }}
+                </p>
+                <p class="mt-2 text-sm text-muted">
+                  {{ t.experience[e.key]!.text }}
+                </p>
+                <div v-if="e.stack.length" class="mt-3 flex flex-wrap gap-2">
+                  <UBadge
+                    v-for="i in e.stack"
+                    :key="i"
+                    :label="i"
+                    color="neutral"
+                    variant="outline"
+                    class="bg-white/5 ring-teal-900/15 dark:ring-teal-200/15"
+                  >
+                    <template v-if="brand[i]" #leading>
+                      <UIcon
+                        :name="`i-simple-icons-${brand[i][0]}`"
+                        class="size-3.5"
+                        :style="{ color: brand[i][1] }"
+                      />
+                    </template>
+                  </UBadge>
+                </div>
+              </article>
             </div>
           </template>
 

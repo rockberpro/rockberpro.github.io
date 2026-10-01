@@ -22,7 +22,43 @@ export default {
     stack: "Instrumenta",
     beyond: "Ultra codicem",
     contact: "Contactus",
+    experience: "Peritia",
   },
+  experience: {
+    boleto: {
+      title: "Boleto hybridum (boleto + Pix)",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "In cursu",
+      text: "Novum boleto hybridum perficio, schedulam solutionis quae etiam signum QR Pix fert, ut statim solvi possit.",
+    },
+    pix: {
+      title: "Pix coniunctum",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Ian. MMXXV – Iun. MMXXV",
+      text: "Coniunctionem cum Pix, systemate solutionum instantanearum Brasiliae, aedificare adiuvi.",
+    },
+    nfe: {
+      title: "Emissor tabularum fiscalium servitiorum (NFS-e) rescriptus",
+      org: "Universidade do Vale do Taquari (Univates) · Inceptum Reformationis Tributariae",
+      period: "Oct. MMXXV – hodie",
+      text: "Emissorem tabularum fiscalium servitiorum (NFS-e) universitatis ab integro rescripsi, Laravel 13 et Nuxt 4 adhibitis, ad novas leges reformationis tributariae Brasiliae (IBS/CBS) accommodatum. Primam editionem urgentem tribus mensibus (Ianuario MMXXVI) tradidi, et opus pergit dum leges mutantur.",
+    },
+    erp: {
+      title: "ERP universitatis curatum",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Perpetuo",
+      text: "ERP universitatis assidue curo, quod fluxum pecuniae (titulos) et clientium administrationem regit.",
+    },
+    legacy: {
+      title: "Systemata PHP vetera firmata",
+      org: "Universidade do Vale do Taquari (Univates)",
+      period: "Perpetuo",
+      text: "Systematis PHP veteribus et fragilibus observabilitatem per Sentry et errorum tractationem firmiorem adhibere proposui, et ea penitus reficio. Cum nec rescribere iam liceat nec ita pergere, hoc opus systemata a praematura abiectione servat.",
+    },
+  } as Record<
+    string,
+    { title: string; org: string; period: string; text: string }
+  >,
   projectsIntro:
     "Quae aedificavi, plerumque instrumenta quae programmatoribus vitam faciliorem reddunt.",
   lead: "Programmata bona luxus non sunt. Necessitas sunt.",
