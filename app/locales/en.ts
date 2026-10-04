@@ -23,13 +23,13 @@ export default {
   },
   experience: {
     boleto: {
-      title: "Hybrid boleto (boleto + Pix)",
+      title: "Instant-payable bank slips (hybrid boleto)",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "In progress",
-      text: "Implementing the new hybrid boleto, a bank payment slip that also carries a Pix QR code so it can be paid instantly.",
+      text: "Implementing the new hybrid boleto, a Brazilian bank payment slip that also carries a QR code for Pix, the country's instant payment system, so it can be paid instantly.",
     },
     pix: {
-      title: "Native Pix integration",
+      title: "Native instant-payment integration (Pix)",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Jan 2025 – Jun 2025",
       text: "Helped build a native integration with Pix, Brazil's instant payment system, replacing the third-party tools the university relied on.",
