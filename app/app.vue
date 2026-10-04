@@ -339,6 +339,7 @@ const nav = computed(() =>
           :items="nav"
           orientation="vertical"
           highlight
+          :ui="{ link: 'gap-3 px-3 py-3 text-base', linkLeadingIcon: 'size-6' }"
           class="mt-8"
         />
         <div class="mt-auto flex justify-center gap-1">
@@ -751,7 +752,12 @@ const nav = computed(() =>
       :description="t.role"
     >
       <template #body>
-        <UNavigationMenu :items="nav" orientation="vertical" highlight />
+        <UNavigationMenu
+          :items="nav"
+          orientation="vertical"
+          highlight
+          :ui="{ link: 'gap-3 px-3 py-3 text-base', linkLeadingIcon: 'size-6' }"
+        />
       </template>
     </USlideover>
   </UApp>
