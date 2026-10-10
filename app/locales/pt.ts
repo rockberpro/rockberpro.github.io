@@ -53,7 +53,7 @@ export default {
       title: "Robustez em sistemas PHP legados",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Contínuo",
-      text: "Propus adotar observabilidade com Sentry e um tratamento de erros mais robusto em sistemas PHP legados e frágeis, e venho conduzindo as refatorações profundas necessárias. Sem condições para uma reescrita, e sem como seguir daquele jeito, esse trabalho vem evitando que os sistemas sejam descartados prematuramente.",
+      text: "Propus a adoção de observabilidade com Sentry e de um tratamento de erros mais robusto em sistemas PHP legados e frágeis, e venho conduzindo as refatorações profundas que são absolutamente necessárias. Como uma reescrita completa não era viável (devido ao prazo e custo no presente momento), a implementação de observabilidade tem evitado uma série de problemas que a muito tempo ficavam ocultos.",
     },
   } as Record<
     string,
