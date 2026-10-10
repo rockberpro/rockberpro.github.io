@@ -12,7 +12,7 @@ export default {
     before: "Aedifico applicationes interretiales et",
     highlight: "instrumenta programmatorum",
     subtitle:
-      "Programmator interretialis ab anno MMXXI · baccalaureatum in Ingeniaria Programmatum apud Univates anno MMXXVI perficiens.",
+      "Programmator instrumentorum computatralium ab anno MMXXI · baccalaureatum in Ingeniaria Programmatum apud Univates anno MMXXVI perficiens.",
     viewProjects: "Incepta vide",
     getInTouch: "Mecum loquere",
   },
