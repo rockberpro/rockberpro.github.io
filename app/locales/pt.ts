@@ -9,7 +9,7 @@ export default {
   clearSearch: "Limpar busca",
   nothingMatches: "Nenhum resultado para",
   hero: {
-    before: "Eu crio aplicações web e",
+    before: "Eu crio aplicações e",
     highlight: "ferramentas para desenvolvedores",
     subtitle:
       "Desenvolvedor de software desde 2021 · concluindo o bacharelado em Engenharia de Software na Univates em 2026.",

@@ -6,7 +6,7 @@ export default {
   clearSearch: "Clear search",
   nothingMatches: "Nothing matches",
   hero: {
-    before: "I build web apps and",
+    before: "I build apps and",
     highlight: "developer tools",
     subtitle:
       "Software developer since 2021 · finishing a B.Sc. in Software Engineering at Univates in 2026.",
