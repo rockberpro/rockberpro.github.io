@@ -680,12 +680,13 @@ const nav = computed(() =>
                     :label="i"
                     color="neutral"
                     variant="outline"
+                    size="lg"
                     class="bg-white/5 ring-teal-900/15 dark:ring-teal-200/15"
                   >
                     <template v-if="brand[i]" #leading>
                       <UIcon
                         :name="`i-simple-icons-${brand[i][0]}`"
-                        class="size-3.5"
+                        class="size-5"
                         :style="{ color: brand[i][1] }"
                       />
                     </template>
