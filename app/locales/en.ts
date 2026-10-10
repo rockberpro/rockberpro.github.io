@@ -26,7 +26,7 @@ export default {
       title: "Instant-payable bank slips (hybrid boleto)",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "In progress",
-      text: "Implementing the new hybrid boleto, a Brazilian bank payment slip that also carries a QR code for Pix, the country's instant payment system, so it can be paid instantly.",
+      text: "Implementing the new hybrid boleto, a bank payment slip that also carries a QR code for Pix, Brazil's instant payment system, so it can be paid instantly.",
     },
     pix: {
       title: "Native instant-payment integration (Pix)",
