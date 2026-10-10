@@ -9,7 +9,7 @@ export default {
     before: "I build web apps and",
     highlight: "developer tools",
     subtitle:
-      "Web developer since 2021 · finishing a B.Sc. in Software Engineering at Univates in 2026.",
+      "Software developer since 2021 · finishing a B.Sc. in Software Engineering at Univates in 2026.",
     viewProjects: "View projects",
     getInTouch: "Get in touch",
   },

@@ -12,7 +12,7 @@ export default {
     before: "Eu crio aplicações web e",
     highlight: "ferramentas para desenvolvedores",
     subtitle:
-      "Desenvolvedor web desde 2021 · concluindo o bacharelado em Engenharia de Software na Univates em 2026.",
+      "Desenvolvedor de software desde 2021 · concluindo o bacharelado em Engenharia de Software na Univates em 2026.",
     viewProjects: "Ver projetos",
     getInTouch: "Entre em contato",
   },
