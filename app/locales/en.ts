@@ -50,7 +50,7 @@ export default {
       title: "Hardening legacy PHP systems",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Ongoing",
-      text: "Proposed adding Sentry observability and sturdier error handling to brittle legacy PHP systems, and have been carrying out the deep refactors it takes. With a rewrite not yet possible and the status quo unsustainable, the work is keeping the systems alive instead of letting them be scrapped too early.",
+      text: "Among the university's many systems, the legacy ones were improved rather than rewritten: I proposed adopting Sentry observability and sturdier error handling. With a full rewrite not yet feasible (due to time and cost), the new observability layer has been surfacing a whole series of problems that had long stayed hidden.",
     },
   } as Record<
     string,

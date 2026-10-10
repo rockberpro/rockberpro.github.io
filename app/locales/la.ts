@@ -53,7 +53,7 @@ export default {
       title: "Systemata PHP vetera firmata",
       org: "Universidade do Vale do Taquari (Univates)",
       period: "Perpetuo",
-      text: "Systematis PHP veteribus et fragilibus observabilitatem per Sentry et errorum tractationem firmiorem adhibere proposui, et ea penitus reficio. Cum nec rescribere iam liceat nec ita pergere, hoc opus systemata a praematura abiectione servat.",
+      text: "Ex multis universitatis systematibus, vetera non rescripta sed emendata sunt: observabilitatem per Sentry et errorum tractationem firmiorem adhibere proposui. Cum plena rescriptio nondum fieri posset (ob tempus et sumptum), novum observabilitatis stratum multa vitia diu occulta patefacit.",
     },
   } as Record<
     string,
