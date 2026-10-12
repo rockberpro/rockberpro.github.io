@@ -173,7 +173,7 @@ const brand: Record<string, [string, string?]> = {
   MySQL: ["mysql", "#4479A1"],
   MongoDB: ["mongodb", "#47A248"],
   Docker: ["docker", "#2496ED"],
-  Linux: ["linux", "#FCC624"],
+  Linux: ["linux", "#FFFFFF"],
   GitHub: ["github"],
   "GitHub Actions": ["githubactions", "#2088FF"],
   GitLab: ["gitlab", "#FC6D26"],
