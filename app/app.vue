@@ -426,7 +426,7 @@ const nav = computed(() =>
           </UDropdownMenu>
         </header>
 
-        <section class="glass p-8 sm:p-10">
+        <section class="glass @container p-8 sm:p-10">
           <div class="mb-6 flex items-center gap-3 lg:hidden">
             <UAvatar
               src="/resources/images/profile.webp"
@@ -445,13 +445,16 @@ const nav = computed(() =>
             <span class="text-primary">~/rockberpro</span> $ whoami
           </p>
           <h2
-            class="mt-4 max-w-2xl text-3xl font-semibold tracking-tight text-highlighted sm:text-5xl"
+            class="mt-4 text-3xl font-semibold tracking-tight text-highlighted sm:text-[min(3rem,4.6cqw)]"
           >
-            {{ t.hero.before }}
-            <span
-              class="bg-linear-to-r from-teal-600 via-cyan-600 to-violet-600 bg-clip-text text-transparent dark:from-teal-300 dark:via-cyan-300 dark:to-violet-400"
-              >{{ t.hero.highlight }}</span
-            >.
+            {{ t.hero.before }}<br />
+            <span class="sm:whitespace-nowrap"
+              >{{ t.hero.and }}
+              <span
+                class="bg-linear-to-r from-teal-600 via-cyan-600 to-violet-600 bg-clip-text text-transparent dark:from-teal-300 dark:via-cyan-300 dark:to-violet-400"
+                >{{ t.hero.highlight }}</span
+              >.</span
+            >
           </h2>
           <p class="mt-5 max-w-xl text-muted">
             {{ t.hero.subtitle }}

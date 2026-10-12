@@ -9,7 +9,8 @@ export default {
   clearSearch: "Quaesitum dele",
   nothingMatches: "Nihil invenitur pro",
   hero: {
-    before: "Aedifico applicationes et",
+    before: "Aedifico applicationes",
+    and: "et",
     highlight: "instrumenta programmatorum",
     subtitle:
       "Programmator instrumentorum computatralium ab anno MMXXI · baccalaureatum in Ingeniaria Programmatum apud Univates anno MMXXVI perficiens.",
