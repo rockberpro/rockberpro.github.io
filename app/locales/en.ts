@@ -59,6 +59,16 @@ export default {
   >,
   projectsIntro:
     "Things I've built, mostly tools that make developers' lives easier.",
+  projectGroups: {
+    labs: {
+      title: "Labs",
+      blurb: "Experiments and libraries, moving fast.",
+    },
+    dev: {
+      title: "Dev",
+      blurb: "Everyday tools I use and maintain.",
+    },
+  } as Record<string, { title: string; blurb: string }>,
   lead: "Good software isn't a luxury. It's a necessity.",
   about: [
     "I've been into technology since I was a kid. Computers hooked me early, so I enrolled in a technician course and went on to spend three years working in computer maintenance. In 2021 I moved into web development and have been building for the web ever since. I'm finishing my B.Sc. in Software Engineering at Univates at the end of 2026.",

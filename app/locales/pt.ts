@@ -62,6 +62,16 @@ export default {
   >,
   projectsIntro:
     "Coisas que construí, principalmente ferramentas que facilitam a vida de quem desenvolve.",
+  projectGroups: {
+    labs: {
+      title: "Labs",
+      blurb: "Experimentos e bibliotecas, em evolução rápida.",
+    },
+    dev: {
+      title: "Dev",
+      blurb: "Ferramentas do dia a dia que uso e mantenho.",
+    },
+  } as Record<string, { title: string; blurb: string }>,
   lead: "Software bom não é luxo. É necessidade.",
   about: [
     "Sou apaixonado por tecnologia desde criança. Os computadores capturaram minha atenção desde cedo. Ingressei em um curso técnico e passei três anos trabalhando com manutenção de computadores. Em 2021 migrei para o desenvolvimento web e, desde então, construo para a web. Estou concluindo o bacharelado em Engenharia de Software na Univates no fim de 2026.",

@@ -62,6 +62,16 @@ export default {
   >,
   projectsIntro:
     "Quae aedificavi, plerumque instrumenta quae programmatoribus vitam faciliorem reddunt.",
+  projectGroups: {
+    labs: {
+      title: "Officina",
+      blurb: "Experimenta et bibliothecae, celeriter crescentia.",
+    },
+    dev: {
+      title: "Instrumenta",
+      blurb: "Utensilia cotidiana quae utor et sustineo.",
+    },
+  } as Record<string, { title: string; blurb: string }>,
   lead: "Programmata bona luxus non sunt. Necessitas sunt.",
   about: [
     "Iam a puero technologiae studeo. Computatra me mature ceperunt, itaque cursum technicum inii et tres annos in computatris reficiendis laboravi. Anno MMXXI ad programmationem interretialem transii et ex eo tempore pro interreti aedifico. Baccalaureatum in Ingeniaria Programmatum apud Univates exeunte anno MMXXVI perficio.",

@@ -82,52 +82,73 @@ const hobbies = [
 ];
 
 // descriptions stay in English in every language: the cards link to English repos
+// `org` is the GitHub org (rockberpro-<org>) that owns the repo
 const projects = [
   {
-    name: "agent-kit",
-    description:
-      "Claude Code plugin that sets up a project's agent harness: guards, an .agents/ structure, and skills that map the codebase into memory and rules.",
-    language: "Shell",
-  },
-  {
-    name: "git-code-review",
-    description: "Review a whole branch as one staged diff in your editor.",
+    name: "cognisphere",
+    org: "labs",
+    description: "Agent harness builder for your projects.",
     language: "Shell",
   },
   {
     name: "pure",
+    org: "labs",
     description: "PHP linting tool for your CI.",
     language: "Shell",
   },
   {
     name: "rosa-router",
+    org: "labs",
     description: "Smart REST router for PHP.",
     language: "PHP",
   },
   {
     name: "rosa-client",
+    org: "labs",
     description: "Smart REST client for PHP.",
     language: "PHP",
   },
   {
-    name: "git-lga",
+    name: "bash-lba",
+    org: "dev",
     description:
-      "Logical Git aliases: mnemonics you can guess instead of memorize.",
+      "Logical Bash aliases: intuitive shortcuts, no cheat sheet needed.",
     language: "Shell",
   },
   {
     name: "docker-lda",
+    org: "dev",
     description:
       "Logical Docker aliases: shortcuts that read like the command they run.",
     language: "Shell",
   },
   {
-    name: "bash-lba",
+    name: "git-lga",
+    org: "dev",
     description:
-      "Logical Bash aliases: intuitive shortcuts, no cheat sheet needed.",
+      "Logical Git aliases: mnemonics you can guess instead of memorize.",
+    language: "Shell",
+  },
+  {
+    name: "systemd-lsa",
+    org: "dev",
+    description:
+      "Logical Systemd aliases: shortcuts that read like the command they run.",
+    language: "Shell",
+  },
+  {
+    name: "git-code-review",
+    org: "dev",
+    description: "Review a whole branch as one staged diff in your editor.",
     language: "Shell",
   },
 ];
+
+// group order on the page; labs first so cognisphere leads
+const orgs = [
+  { key: "labs", icon: "i-lucide-flask-conical" },
+  { key: "dev", icon: "i-lucide-wrench" },
+] as const;
 
 // title and text live in the locales; stack names reuse the `brand` icons
 const experience = [
@@ -217,7 +238,15 @@ const hit = (...texts: string[]) =>
   !q.value || texts.some((t) => t.toLowerCase().includes(q.value));
 
 const shownProjects = computed(() =>
-  projects.filter((p) => hit(p.name, p.description, p.language)),
+  projects.filter((p) => hit(p.name, p.org, p.description, p.language)),
+);
+const projectGroups = computed(() =>
+  orgs
+    .map((o) => ({
+      ...o,
+      items: shownProjects.value.filter((p) => p.org === o.key),
+    }))
+    .filter((g) => g.items.length > 0),
 );
 const shownExperience = computed(() =>
   experience.filter((e) => {
@@ -528,36 +557,55 @@ const nav = computed(() =>
                 class="size-20 shrink-0 drop-shadow-lg transition duration-200 hover:-translate-y-1 hover:scale-105"
               />
             </div>
-            <div class="grid gap-4 pb-6 sm:grid-cols-2">
-              <a
-                v-for="p in shownProjects"
-                :key="p.name"
-                :href="`${links.github}/${p.name}`"
-                target="_blank"
-                class="glass spotlight group rounded-xl p-4 transition hover:bg-white/60 dark:hover:bg-white/[0.05]"
-                @mousemove="spot"
-              >
-                <div class="flex items-center justify-between">
-                  <span
-                    class="font-mono text-sm font-medium group-hover:text-primary"
-                    >{{ p.name }}</span
-                  >
-                  <UIcon
-                    name="i-lucide-arrow-up-right"
-                    class="size-4 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
-                  />
-                </div>
-                <p class="mt-2 text-sm text-muted">{{ p.description }}</p>
-                <p
-                  class="mt-3 flex items-center gap-1.5 font-mono text-xs text-dimmed"
+            <section v-for="g in projectGroups" :key="g.key" class="pb-6">
+              <div class="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+                <h3
+                  class="flex items-center gap-2 font-medium text-highlighted"
                 >
-                  <span
-                    class="size-2 rounded-full"
-                    :style="{ backgroundColor: langColor[p.language] }"
-                  />{{ p.language }}
+                  <UIcon :name="g.icon" class="size-4 text-primary" />
+                  {{ t.projectGroups[g.key]!.title }}
+                </h3>
+                <p class="text-sm text-muted">
+                  {{ t.projectGroups[g.key]!.blurb }}
                 </p>
-              </a>
-            </div>
+                <a
+                  :href="`https://github.com/rockberpro-${g.key}`"
+                  target="_blank"
+                  class="ml-auto font-mono text-xs text-dimmed hover:text-primary"
+                  >rockberpro-{{ g.key }}</a
+                >
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <a
+                  v-for="p in g.items"
+                  :key="p.name"
+                  :href="`https://github.com/rockberpro-${p.org}/${p.name}`"
+                  target="_blank"
+                  class="glass spotlight group rounded-xl p-4 transition hover:bg-white/60 dark:hover:bg-white/[0.05]"
+                  @mousemove="spot"
+                >
+                  <div class="flex items-center justify-between">
+                    <span
+                      class="font-mono text-sm font-medium group-hover:text-primary"
+                      >{{ p.name }}</span
+                    >
+                    <UIcon
+                      name="i-lucide-arrow-up-right"
+                      class="size-4 text-muted transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary"
+                    />
+                  </div>
+                  <p class="mt-2 text-sm text-muted">{{ p.description }}</p>
+                  <p
+                    class="mt-3 flex items-center gap-1.5 font-mono text-xs text-dimmed"
+                  >
+                    <span
+                      class="size-2 rounded-full"
+                      :style="{ backgroundColor: langColor[p.language] }"
+                    />{{ p.language }}
+                  </p>
+                </a>
+              </div>
+            </section>
           </template>
 
           <template #experience>
