@@ -9,7 +9,7 @@ export default {
   clearSearch: "Limpar busca",
   nothingMatches: "Nenhum resultado para",
   hero: {
-    before: "Eu crio aplicações",
+    before: "Eu crio aplicativos",
     and: "e",
     highlight: "ferramentas para desenvolvedores",
     subtitle:
