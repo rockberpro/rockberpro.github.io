@@ -110,35 +110,35 @@ const projects = [
   },
   {
     name: "bash-lba",
-    org: "dev",
+    org: "labs",
     description:
       "Logical Bash aliases: intuitive shortcuts, no cheat sheet needed.",
     language: "Shell",
   },
   {
     name: "docker-lda",
-    org: "dev",
+    org: "labs",
     description:
       "Logical Docker aliases: shortcuts that read like the command they run.",
     language: "Shell",
   },
   {
     name: "git-lga",
-    org: "dev",
+    org: "labs",
     description:
       "Logical Git aliases: mnemonics you can guess instead of memorize.",
     language: "Shell",
   },
   {
     name: "systemd-lsa",
-    org: "dev",
+    org: "labs",
     description:
       "Logical Systemd aliases: shortcuts that read like the command they run.",
     language: "Shell",
   },
   {
     name: "git-code-review",
-    org: "dev",
+    org: "labs",
     description: "Review a whole branch as one staged diff in your editor.",
     language: "Shell",
   },
@@ -147,7 +147,6 @@ const projects = [
 // group order on the page; labs first so cognisphere leads
 const orgs = [
   { key: "labs", icon: "i-lucide-flask-conical" },
-  { key: "dev", icon: "i-lucide-wrench" },
 ] as const;
 
 // title and text live in the locales; stack names reuse the `brand` icons
