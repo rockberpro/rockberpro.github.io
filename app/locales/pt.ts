@@ -65,7 +65,7 @@ export default {
   projectGroups: {
     labs: {
       title: "Labs",
-      blurb: "Experimentos e bibliotecas, em evolução rápida.",
+      blurb: "Meus projetos pessoais, desenvolvidos abertamente.",
     },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Software bom não é luxo. É necessidade.",

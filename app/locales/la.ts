@@ -65,7 +65,7 @@ export default {
   projectGroups: {
     labs: {
       title: "Officina",
-      blurb: "Experimenta et bibliothecae, celeriter crescentia.",
+      blurb: "Mea proiecta privata, aperte aedificata.",
     },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Programmata bona luxus non sunt. Necessitas sunt.",
