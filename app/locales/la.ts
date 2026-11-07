@@ -67,10 +67,6 @@ export default {
       title: "Officina",
       blurb: "Experimenta et bibliothecae, celeriter crescentia.",
     },
-    dev: {
-      title: "Instrumenta",
-      blurb: "Utensilia cotidiana quae utor et sustineo.",
-    },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Programmata bona luxus non sunt. Necessitas sunt.",
   about: [

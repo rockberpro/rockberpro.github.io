@@ -64,10 +64,6 @@ export default {
       title: "Labs",
       blurb: "Experiments and libraries, moving fast.",
     },
-    dev: {
-      title: "Dev",
-      blurb: "Everyday tools I use and maintain.",
-    },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Good software isn't a luxury. It's a necessity.",
   about: [

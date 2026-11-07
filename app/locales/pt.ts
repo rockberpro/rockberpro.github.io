@@ -67,10 +67,6 @@ export default {
       title: "Labs",
       blurb: "Experimentos e bibliotecas, em evolução rápida.",
     },
-    dev: {
-      title: "Dev",
-      blurb: "Ferramentas do dia a dia que uso e mantenho.",
-    },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Software bom não é luxo. É necessidade.",
   about: [
