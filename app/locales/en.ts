@@ -62,7 +62,7 @@ export default {
   projectGroups: {
     labs: {
       title: "Labs",
-      blurb: "Experiments and libraries, moving fast.",
+      blurb: "My personal projects, built in the open.",
     },
   } as Record<string, { title: string; blurb: string }>,
   lead: "Good software isn't a luxury. It's a necessity.",
