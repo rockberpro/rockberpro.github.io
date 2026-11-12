@@ -163,9 +163,9 @@ const stack: Record<string, string[]> = {
   Languages: ["TypeScript", "PHP", "Python", "Bash"],
   Frontend: ["Nuxt", "Tailwind CSS", "Vite"],
   Backend: ["Laravel", "Node.js", "Bun", "PostgreSQL", "MySQL", "MongoDB"],
-  DevOps: ["Linux", "GitHub", "GitHub Actions", "GitLab"],
+  DevOps: ["Linux", "GitHub", "GitHub Actions", "GitLab", "Playwright"],
   Infra: ["Google Cloud", "Docker", "K3s", "Nginx", "Caddy"],
-  Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip"],
+  Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip", "HyperDX"],
 };
 
 // GitHub linguist colors
@@ -207,6 +207,8 @@ const brand: Record<string, [string, string?]> = {
   Sentry: ["sentry"],
   // not in simple-icons; full-color logo from theSVG
   GlitchTip: ["thesvg-color:glitchtip"],
+  HyperDX: ["thesvg-color:hyperdx"],
+  Playwright: ["thesvg-color:playwright"],
 };
 
 const iconName = (slug: string) =>
