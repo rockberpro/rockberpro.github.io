@@ -80,6 +80,7 @@ export default {
     Frontend: "Frontend",
     Backend: "Backend e Bancos de Dados",
     DevOps: "DevOps",
+    Infra: "Infraestrutura",
     Observability: "Observabilidade",
   },
   beyondIntro: "Quando eu fecho o terminal, é aqui que você me encontra!",

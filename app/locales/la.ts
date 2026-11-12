@@ -80,6 +80,7 @@ export default {
     Frontend: "Frons",
     Backend: "Tergum et Bases Datorum",
     DevOps: "DevOps",
+    Infra: "Infrastructura",
     Observability: "Observatio",
   },
   beyondIntro: "Clauso terminali, hic me invenies!",
