@@ -201,10 +201,16 @@ const brand: Record<string, [string, string?]> = {
   "Google Cloud": ["googlecloud", "#4285F4"],
   K3s: ["k3s", "#FFC61C"],
   Nginx: ["nginx", "#009639"],
-  Caddy: ["caddy", "#1F88C0"],  Prometheus: ["prometheus", "#E6522C"],
+  Caddy: ["caddy", "#1F88C0"],
+  Prometheus: ["prometheus", "#E6522C"],
   Grafana: ["grafana", "#F46800"],
   Sentry: ["sentry"],
+  // not in simple-icons; full-color logo from theSVG
+  GlitchTip: ["thesvg-color:glitchtip"],
 };
+
+const iconName = (slug: string) =>
+  slug.includes(":") ? slug : `i-simple-icons-${slug}`;
 
 const sectionDefs = [
   {
@@ -646,7 +652,7 @@ const nav = computed(() =>
                   >
                     <template v-if="brand[i]" #leading>
                       <UIcon
-                        :name="`i-simple-icons-${brand[i][0]}`"
+                        :name="iconName(brand[i][0])"
                         class="size-3.5"
                         :style="{ color: brand[i][1] }"
                       />
@@ -739,7 +745,7 @@ const nav = computed(() =>
                   >
                     <template v-if="brand[i]" #leading>
                       <UIcon
-                        :name="`i-simple-icons-${brand[i][0]}`"
+                        :name="iconName(brand[i][0])"
                         class="size-5"
                         :style="{ color: brand[i][1] }"
                       />
