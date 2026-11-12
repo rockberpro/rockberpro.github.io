@@ -163,7 +163,8 @@ const stack: Record<string, string[]> = {
   Languages: ["TypeScript", "PHP", "Python", "Bash"],
   Frontend: ["Nuxt", "Tailwind CSS", "Vite"],
   Backend: ["Laravel", "Node.js", "Bun", "PostgreSQL", "MySQL", "MongoDB"],
-  DevOps: ["Docker", "Linux", "GitHub", "GitHub Actions", "GitLab"],
+  DevOps: ["Linux", "GitHub", "GitHub Actions", "GitLab"],
+  Infra: ["Google Cloud", "Docker", "K3s", "Nginx", "Caddy"],
   Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip"],
 };
 
@@ -197,7 +198,10 @@ const brand: Record<string, [string, string?]> = {
   GitHub: ["github"],
   "GitHub Actions": ["githubactions", "#2088FF"],
   GitLab: ["gitlab", "#FC6D26"],
-  Prometheus: ["prometheus", "#E6522C"],
+  "Google Cloud": ["googlecloud", "#4285F4"],
+  K3s: ["k3s", "#FFC61C"],
+  Nginx: ["nginx", "#009639"],
+  Caddy: ["caddy", "#1F88C0"],  Prometheus: ["prometheus", "#E6522C"],
   Grafana: ["grafana", "#F46800"],
   Sentry: ["sentry"],
 };

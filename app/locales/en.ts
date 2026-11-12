@@ -77,6 +77,7 @@ export default {
     Frontend: "Frontend",
     Backend: "Backend & Databases",
     DevOps: "DevOps",
+    Infra: "Infrastructure",
     Observability: "Observability",
   } as Record<string, string>,
   beyondIntro: "When the terminal's closed, this is where you'll find me!",
