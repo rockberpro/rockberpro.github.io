@@ -183,37 +183,38 @@ const langColor: Record<string, string> = {
   PHP: "#777bb4",
 };
 
-// simple-icons slug + brand hex; black brands inherit the text color
+// full-color logos:* where available; simple-icons slug + brand hex where
+// there is no color version (black brands inherit the text color)
 const brand: Record<string, [string, string?]> = {
-  "Claude Code": ["claude", "#D97757"],
+  "Claude Code": ["logos:claude"],
   MCP: ["modelcontextprotocol"],
   Ollama: ["ollama"],
-  TypeScript: ["typescript", "#3178C6"],
-  PHP: ["php", "#777BB4"],
-  Python: ["python", "#3776AB"],
-  Bash: ["gnubash", "#4EAA25"],
-  Nuxt: ["nuxt", "#00DC82"],
-  "Tailwind CSS": ["tailwindcss", "#06B6D4"],
-  Vite: ["vite", "#9135FF"],
-  Laravel: ["laravel", "#FF2D20"],
-  "Node.js": ["nodedotjs", "#5FA04E"],
-  Bun: ["bun"],
-  PostgreSQL: ["postgresql", "#4169E1"],
-  MySQL: ["mysql", "#4479A1"],
-  MongoDB: ["mongodb", "#47A248"],
-  "Apache Kafka": ["apachekafka"],
-  Docker: ["docker", "#2496ED"],
-  Linux: ["linux", "#FFFFFF"],
+  TypeScript: ["logos:typescript-icon"],
+  PHP: ["logos:php"],
+  Python: ["logos:python"],
+  Bash: ["logos:bash-icon"],
+  Nuxt: ["logos:nuxt-icon"],
+  "Tailwind CSS": ["logos:tailwindcss-icon"],
+  Vite: ["logos:vitejs"],
+  Laravel: ["logos:laravel"],
+  "Node.js": ["logos:nodejs-icon"],
+  Bun: ["logos:bun"],
+  PostgreSQL: ["logos:postgresql"],
+  MySQL: ["logos:mysql-icon"],
+  MongoDB: ["logos:mongodb-icon"],
+  "Apache Kafka": ["logos:kafka-icon"],
+  Docker: ["logos:docker-icon"],
+  Linux: ["logos:linux-tux"],
   GitHub: ["github"],
-  "GitHub Actions": ["githubactions", "#2088FF"],
-  GitLab: ["gitlab", "#FC6D26"],
-  "Google Cloud": ["googlecloud", "#4285F4"],
+  "GitHub Actions": ["logos:github-actions"],
+  GitLab: ["logos:gitlab"],
+  "Google Cloud": ["logos:google-cloud"],
   K3s: ["k3s", "#FFC61C"],
-  Nginx: ["nginx", "#009639"],
+  Nginx: ["logos:nginx"],
   Caddy: ["caddy", "#1F88C0"],
-  Prometheus: ["prometheus", "#E6522C"],
-  Grafana: ["grafana", "#F46800"],
-  Sentry: ["sentry"],
+  Prometheus: ["logos:prometheus"],
+  Grafana: ["logos:grafana"],
+  Sentry: ["logos:sentry-icon"],
   // not in simple-icons; full-color logo from theSVG
   GlitchTip: ["thesvg-color:glitchtip"],
   HyperDX: ["thesvg-color:hyperdx"],
@@ -757,7 +758,7 @@ const nav = computed(() =>
                     <template v-if="brand[i]" #leading>
                       <UIcon
                         :name="iconName(brand[i][0])"
-                        class="size-5"
+                        class="size-6"
                         :style="{ color: brand[i][1] }"
                       />
                     </template>
