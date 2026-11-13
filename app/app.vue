@@ -173,7 +173,7 @@ const stack: Record<string, string[]> = {
   ],
   DevOps: ["Linux", "GitHub", "GitHub Actions", "GitLab", "Playwright"],
   Infra: ["Google Cloud", "Docker", "K3s", "Nginx", "Caddy"],
-  Observability: ["Prometheus", "Grafana", "Sentry", "GlitchTip", "HyperDX"],
+  Observability: ["Sentry", "GlitchTip", "HyperDX", "Grafana", "Prometheus"],
 };
 
 // GitHub linguist colors
