@@ -186,7 +186,7 @@ const langColor: Record<string, string> = {
 // full-color logos:* where available; simple-icons slug + brand hex where
 // there is no color version (black brands inherit the text color)
 const brand: Record<string, [string, string?]> = {
-  "Claude Code": ["logos:claude"],
+  "Claude Code": ["logos:claude-icon"],
   MCP: ["modelcontextprotocol"],
   Ollama: ["ollama"],
   TypeScript: ["logos:typescript-icon"],
@@ -207,7 +207,7 @@ const brand: Record<string, [string, string?]> = {
   Linux: ["logos:linux-tux"],
   GitHub: ["github"],
   "GitHub Actions": ["logos:github-actions"],
-  GitLab: ["logos:gitlab"],
+  GitLab: ["logos:gitlab-icon"],
   "Google Cloud": ["logos:google-cloud"],
   K3s: ["k3s", "#FFC61C"],
   Nginx: ["logos:nginx"],
