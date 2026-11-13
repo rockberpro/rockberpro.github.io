@@ -214,7 +214,7 @@ const brand: Record<string, [string, string?]> = {
   Caddy: ["caddy", "#1F88C0"],
   Prometheus: ["logos:prometheus"],
   Grafana: ["logos:grafana"],
-  Sentry: ["logos:sentry-icon"],
+  Sentry: ["sentry"],
   // not in simple-icons; full-color logo from theSVG
   GlitchTip: ["thesvg-color:glitchtip"],
   HyperDX: ["thesvg-color:hyperdx"],
